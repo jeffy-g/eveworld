@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+ 
+<html>
+ 
+<head>
+    <meta charset="utf-8"/>
+    <title>EVE world map (v1.9.2 powered by three.js)</title>
+    <script defer src="./libs/three-rmc.js"></script>
+    <script defer src="./libs/stats-rmc.js"></script>
+    <script defer src="./libs/dat.gui-rmc.js"></script>
+    <script defer src="./libs/controls/orbit-conrols-ex.js"></script>
+    <!-- <script src="./libs/controls/TrackballControls.js"></script> -->
+    <script defer src="./libs/renderers/css-2d-renderer.js"></script>
+    <script type="module" src="./eve-map.js"></script>
+    <link rel="icon" type="image/png" href="./resources/eve-icon.png">
+</head>
+<body>
+    <div id="stats-container" class="stats-container"></div>
+    <div id="webgl-container" class="webgl-container"></div>
+    <link rel="stylesheet" href="./style/main.css"/>
+    <!-- <iframe src="./resources/noop.ogg" allow="autoplay" id="noop" class="dummy-frame"></iframe> -->
+    <!-- <audio id="chopin" class="dummy-audio" autoplay muted><source src="./resources/noop.ogg"></audio> -->
+    <button class="dummy-button" data-state="off">
+        <!-- <img class="effect-button" alt="." src="./resources/round_volume_off_white_2x.png"/> -->
+    </button>
+</body>
+</html>

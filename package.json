@@ -1,0 +1,16 @@
+{
+  "name": "eve-world-map",
+  "version": "1.0.0-beta",
+  "description": "EVE online world map viewer with threejs",
+  "main": "./docs/eve-map.js",
+  "browser": "./docs/index.html",
+  "license": "AGPL-3.0-only",
+  "author": {
+    "name": "jeffy-g",
+    "email": "hirotom1107@gmail.com",
+    "url": "https://github.com/jeffy-g"
+  },
+  "devDependencies": {
+  },
+  "dependencies": {}
+}
