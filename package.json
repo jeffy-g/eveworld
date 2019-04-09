@@ -10,6 +10,12 @@
     "email": "hirotom1107@gmail.com",
     "url": "https://github.com/jeffy-g"
   },
+  "keywords": [
+	"eve-online",
+	"javascript",
+	"threejs",
+	"eve"
+  ],
   "devDependencies": {
   },
   "dependencies": {}
