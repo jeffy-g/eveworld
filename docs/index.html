@@ -4,7 +4,15 @@
  
 <head>
     <meta charset="utf-8"/>
-    <title>EVE world map (v1.9.2 powered by three.js)</title>
+    <title>EVE world map (v1.0.0-beta powered by three.js)</title>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-137578654-2"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'UA-137578654-2');
+	</script>
     <script defer src="./libs/three-rmc.js"></script>
     <script defer src="./libs/stats-rmc.js"></script>
     <script defer src="./libs/dat.gui-rmc.js"></script>
@@ -18,10 +26,7 @@
     <div id="stats-container" class="stats-container"></div>
     <div id="webgl-container" class="webgl-container"></div>
     <link rel="stylesheet" href="./style/main.css"/>
-    <!-- <iframe src="./resources/noop.ogg" allow="autoplay" id="noop" class="dummy-frame"></iframe> -->
-    <!-- <audio id="chopin" class="dummy-audio" autoplay muted><source src="./resources/noop.ogg"></audio> -->
     <button class="dummy-button" data-state="off">
-        <!-- <img class="effect-button" alt="." src="./resources/round_volume_off_white_2x.png"/> -->
     </button>
 </body>
 </html>
