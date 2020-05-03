@@ -21,7 +21,8 @@
 body {
   margin: 0;
   overflow: hidden;
-  background-color: #3b6471; }
+  background-color: #3b6471;
+}
 
 .dummy-button {
   background: transparent;
@@ -35,59 +36,73 @@ body {
   border: 0;
   padding: 0;
   z-index: 10000;
-  box-sizing: border-box; }
-  .dummy-button[data-state]::before {
-    content: "";
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 32px;
-    height: 32px; }
-  .dummy-button[data-state="off"]::before {
-    background: url(../resources/round_volume_off_white_2x.png) 0 0/32px 32px no-repeat transparent; }
-  .dummy-button[data-state="on"]::before {
-    background: url(../resources/round_volume_up_white_2x.png) 0 0/32px 32px no-repeat transparent; }
+  box-sizing: border-box;
+}
+.dummy-button[data-state]::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 32px;
+  height: 32px;
+}
+.dummy-button[data-state=off]::before {
+  background: url(../resources/round_volume_off_white_2x.png) 0 0/32px 32px no-repeat transparent;
+}
+.dummy-button[data-state=on]::before {
+  background: url(../resources/round_volume_up_white_2x.png) 0 0/32px 32px no-repeat transparent;
+}
 
 .stats-container {
   --top: 15px;
-  box-sizing: border-box; }
-  .stats-container .extra-stat {
-    box-sizing: inherit;
-    width: auto;
-    font-size: 0.7rem;
-    background-color: rgba(0, 0, 0, 0.25);
-    position: absolute;
-    top: var(--top);
-    left: 80px;
-    color: white;
-    padding-left: 2px;
-    z-index: 10000; }
-    .stats-container .extra-stat:first-child {
-      top: 0; }
-    .stats-container .extra-stat::before {
-      content: "ℹ️"; }
-    .stats-container .extra-stat .ease-function {
-      color: #0ae85b;
-      font-weight: bold; }
-    .stats-container .extra-stat .lookat-distance, .stats-container .extra-stat .hunted-distance {
-      color: cyan; }
-      .stats-container .extra-stat .lookat-distance::after, .stats-container .extra-stat .hunted-distance::after {
-        content: " " attr(data-unit);
-        color: white; }
+  box-sizing: border-box;
+}
+.stats-container .extra-stat {
+  box-sizing: inherit;
+  width: auto;
+  font-size: 0.7rem;
+  background-color: rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: var(--top);
+  left: 80px;
+  color: white;
+  padding-left: 2px;
+  z-index: 10000;
+}
+.stats-container .extra-stat:first-child {
+  top: 0;
+}
+.stats-container .extra-stat::before {
+  content: "ℹ️";
+}
+.stats-container .extra-stat .ease-function {
+  color: #0ae85b;
+  font-weight: bold;
+}
+.stats-container .extra-stat .lookat-distance, .stats-container .extra-stat .hunted-distance {
+  color: aqua;
+}
+.stats-container .extra-stat .lookat-distance::after, .stats-container .extra-stat .hunted-distance::after {
+  content: " " attr(data-unit);
+  color: white;
+}
 
 .dg.ac {
-  z-index: 5000; }
+  z-index: 5000;
+}
 
 .webgl-container .eve-world {
   opacity: 1;
-  transition: opacity 800ms; }
-
+  transition: opacity 800ms;
+}
 .webgl-container .css2d-view {
   position: absolute;
-  top: 0px; }
+  top: 0px;
+}
 
 .region {
-  font-size: 0.2rem; }
+  font-size: 0.2rem;
+}
 
 .name-label {
   color: rgba(255, 255, 255, 0.85);
@@ -105,11 +120,14 @@ body {
   backface-visibility: hidden;
   transform-style: preserve-3d;
   will-change: transform;
-  /* background: transparent; */ }
-  .name-label:hover {
-    text-shadow: -1px -2px 7px #f2fff6, 2px 2px 5px #c2fb40; }
-  .name-label.pointer-text {
-    color: rgba(255, 215, 0, 0.81); }
+  /* background: transparent; */
+}
+.name-label:hover {
+  text-shadow: -1px -2px 7px #f2fff6, 2px 2px 5px #c2fb40;
+}
+.name-label.pointer-text {
+  color: rgba(255, 215, 0, 0.81);
+}
 
 /*
 1.0:#33F9F9 0.9:#4BF3C3 0.8:#02F34B 0.7:#00FF00 0.6:#96F933 0.5:#F5F501 0.4:#E58000 0.3:#F66301 0.2:#EB4903 0.1:#DC3201  0.0,-1.0:#F30202
@@ -136,151 +154,200 @@ I could not get it exactly
     #c00103	//0.0 -1.0
 */
 .ss-text-1_0 {
-  color: #2fefef; }
+  color: #2fefef;
+}
 
 .ss-bg-1_0 {
-  background-color: #2fefef; }
+  background-color: #2fefef;
+}
 
 .eve-system-name[data-sstext="1.0"]::before, .eve-system-name[data-sstext="1.0"]::after {
-  color: #2fefef; }
+  color: #2fefef;
+}
 
 [data-ssbg="1.0"] {
-  background-color: #2fefef; }
+  background-color: #2fefef;
+}
 
 .ss-text-0_9 {
-  color: #48f0c0; }
+  color: #48f0c0;
+}
 
 .ss-bg-0_9 {
-  background-color: #48f0c0; }
+  background-color: #48f0c0;
+}
 
 .eve-system-name[data-sstext="0.9"]::before, .eve-system-name[data-sstext="0.9"]::after {
-  color: #48f0c0; }
+  color: #48f0c0;
+}
 
 [data-ssbg="0.9"] {
-  background-color: #48f0c0; }
+  background-color: #48f0c0;
+}
 
 .ss-text-0_8 {
-  color: #00ef47; }
+  color: #00ef47;
+}
 
 .ss-bg-0_8 {
-  background-color: #00ef47; }
+  background-color: #00ef47;
+}
 
 .eve-system-name[data-sstext="0.8"]::before, .eve-system-name[data-sstext="0.8"]::after {
-  color: #00ef47; }
+  color: #00ef47;
+}
 
 [data-ssbg="0.8"] {
-  background-color: #00ef47; }
+  background-color: #00ef47;
+}
 
 .ss-text-0_7 {
-  color: #00f000; }
+  color: #00f000;
+}
 
 .ss-bg-0_7 {
-  background-color: #00f000; }
+  background-color: #00f000;
+}
 
 .eve-system-name[data-sstext="0.7"]::before, .eve-system-name[data-sstext="0.7"]::after {
-  color: #00f000; }
+  color: #00f000;
+}
 
 [data-ssbg="0.7"] {
-  background-color: #00f000; }
+  background-color: #00f000;
+}
 
 .ss-text-0_6 {
-  color: #8fef2f; }
+  color: #8fef2f;
+}
 
 .ss-bg-0_6 {
-  background-color: #8fef2f; }
+  background-color: #8fef2f;
+}
 
 .eve-system-name[data-sstext="0.6"]::before, .eve-system-name[data-sstext="0.6"]::after {
-  color: #8fef2f; }
+  color: #8fef2f;
+}
 
 [data-ssbg="0.6"] {
-  background-color: #8fef2f; }
+  background-color: #8fef2f;
+}
 
 .ss-text-0_5 {
-  color: #efef00; }
+  color: #efef00;
+}
 
 .ss-bg-0_5 {
-  background-color: #efef00; }
+  background-color: #efef00;
+}
 
 .eve-system-name[data-sstext="0.5"]::before, .eve-system-name[data-sstext="0.5"]::after {
-  color: #efef00; }
+  color: #efef00;
+}
 
 [data-ssbg="0.5"] {
-  background-color: #efef00; }
+  background-color: #efef00;
+}
 
 .ss-text-0_4 {
-  color: #d77700; }
+  color: #d77700;
+}
 
 .ss-bg-0_4 {
-  background-color: #d77700; }
+  background-color: #d77700;
+}
 
 .eve-system-name[data-sstext="0.4"]::before, .eve-system-name[data-sstext="0.4"]::after {
-  color: #d77700; }
+  color: #d77700;
+}
 
 [data-ssbg="0.4"] {
-  background-color: #d77700; }
+  background-color: #d77700;
+}
 
 .ss-text-0_3 {
-  color: #f06000; }
+  color: #f06000;
+}
 
 .ss-bg-0_3 {
-  background-color: #f06000; }
+  background-color: #f06000;
+}
 
 .eve-system-name[data-sstext="0.3"]::before, .eve-system-name[data-sstext="0.3"]::after {
-  color: #f06000; }
+  color: #f06000;
+}
 
 [data-ssbg="0.3"] {
-  background-color: #f06000; }
+  background-color: #f06000;
+}
 
 .ss-text-0_2 {
-  color: #f04800; }
+  color: #f04800;
+}
 
 .ss-bg-0_2 {
-  background-color: #f04800; }
+  background-color: #f04800;
+}
 
 .eve-system-name[data-sstext="0.2"]::before, .eve-system-name[data-sstext="0.2"]::after {
-  color: #f04800; }
+  color: #f04800;
+}
 
 [data-ssbg="0.2"] {
-  background-color: #f04800; }
+  background-color: #f04800;
+}
 
 .ss-text-0_1 {
-  color: #d73000; }
+  color: #d73000;
+}
 
 .ss-bg-0_1 {
-  background-color: #d73000; }
+  background-color: #d73000;
+}
 
 .eve-system-name[data-sstext="0.1"]::before, .eve-system-name[data-sstext="0.1"]::after {
-  color: #d73000; }
+  color: #d73000;
+}
 
 [data-ssbg="0.1"] {
-  background-color: #d73000; }
+  background-color: #d73000;
+}
 
 .ss-text-0_0 {
-  color: #f00000; }
+  color: #f00000;
+}
 
 .ss-bg-0_0 {
-  background-color: #f00000; }
+  background-color: #f00000;
+}
 
 .eve-system-name[data-sstext="0.0"]::before, .eve-system-name[data-sstext="0.0"]::after {
-  color: #f00000; }
+  color: #f00000;
+}
 
 [data-ssbg="0.0"] {
-  background-color: #f00000; }
+  background-color: #f00000;
+}
 
 .ss-text-null, div[data-sstext^="-"]::before, span[data-sstext^="-"]::before,
 div[data-sstext^="-"]::after, span[data-sstext^="-"]::after {
-  color: #F00000; }
+  color: #F00000;
+}
 
 .ss-bg-null {
-  background-color: #F00000; }
+  background-color: #F00000;
+}
 
 .eve-system-name {
-  background-color: #274c5d; }
-  .eve-system-name.sstext-before[data-sstext]::before {
-    content: attr(data-sstext);
-    margin-right: 4px; }
-  .eve-system-name.sstext-after[data-sstext]::after {
-    content: attr(data-sstext);
-    margin-left: 4px; }
+  background-color: #274c5d;
+}
+.eve-system-name.sstext-before[data-sstext]::before {
+  content: attr(data-sstext);
+  margin-right: 4px;
+}
+.eve-system-name.sstext-after[data-sstext]::after {
+  content: attr(data-sstext);
+  margin-left: 4px;
+}
 
 /*# sourceMappingURL=main.css.map */
