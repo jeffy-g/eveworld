@@ -1,2 +1,22 @@
-var _AppEffects;!function(e){const t=[{tag:"about",src:"resources/fx/about.mp3",size:1},{tag:"delete",src:"resources/fx/delete.mp3",size:1},{tag:"doit",src:"resources/fx/doit.mp3",size:1},{tag:"fadein",src:"resources/fx/fadein.wav",size:1},{tag:"fadeout",src:"resources/fx/fadeout.mp3",size:1},{tag:"pon",src:"resources/fx/pon.mp3",size:1},{tag:"ken",src:"resources/fx/ken.mp3",size:1},{tag:"pin",src:"resources/fx/pin.mp3",size:1},{tag:"sort",src:"resources/fx/sort.mp3",size:1},{tag:"tick",src:"resources/fx/tick.wav",size:3},{tag:"update",src:"resources/fx/update.wav",size:1}];let s;e.loadDefault=function(){s=n(t),console.log("AppEffects::load ->",s)},e.getDefaultTagList=function(){return s};const o=!1,i={};let r=!1;HTMLAudioElement.prototype.stop=function(){this.pause(),this.currentTime=0};class u{constructor(e,t){this.src=e,this.init(t)}init(e){let t=[];for(this.size=e;e--;)t[e]=new Audio(this.src);this.audio=t,this.index=0}play(){if(r)return;this.audio[this.index++%this.size].play()}pause(){for(let e of this.audio)e.pause()}stop(){for(let e of this.audio)e.stop()}destroy(){let e=this.size;for(;e--;)this.audio[e]=null;this.audio.length=this.size=0}setVolume(e){
-for(let t of this.audio)t.volume=e}}function c(e,t,s){return!i[e]&&(i[e]=new u(t,s),!0)}function n(e,t,s){if("string"==typeof e)return c(e,t,s);if(Array.isArray(e)){const t=e;let s=[];for(let e of t)c(e.tag,e.src,e.size)&&s.push(e.tag);return s}return!1}e.createSequencialAudio=n,e.sequencialPlay=function(e){let t=i[e];t&&t.play()},e.emit=function(e){let t=i[e];t&&t.play()},e.setMute=function(e){r=e},e.sequencialStop=function(e){let t=i[e];t&&t.stop()},e.sequencialStopAll=function(){let e=Object.keys(i);if(e)for(let t of e)this.sequencialStop(t)},e.destroy=function(e){let t=i[e];if(t){t.destroy();let s=delete i[e];return o&&console.log("AppEffects::destroy(%s) success: %s",e,s),s}return!1},e.purgeAll=function(){let e=Object.keys(i);if(e){let t=[];for(let s of e)this.destroy(s)&&t.push(s);console.log("purge success : [%s]",t.join(", "))}},e.setVolume=function(e,t){t<0?t=0:t>1&&(t=1);let s=i[e];s&&s.setVolume(t)},e.setVolumeAll=function(e){let t=Object.keys(i);if(t)for(let s of t)this.setVolume(s,e)},e.pause=function(e){let t=i[e];t&&t.pause()}}(_AppEffects||(_AppEffects={})),window.AppEffects=_AppEffects;export default void 0;
+var _AppEffects;!function(e){const t=[{tag:"about",src:"resources/fx/about.mp3",size:1},{tag:"delete",
+src:"resources/fx/delete.mp3",size:1},{tag:"doit",src:"resources/fx/doit.mp3",size:1},{tag:"fadein",
+src:"resources/fx/fadein.wav",size:1},{tag:"fadeout",src:"resources/fx/fadeout.mp3",size:1},{tag:"pon",
+src:"resources/fx/pon.mp3",size:1},{tag:"ken",src:"resources/fx/ken.mp3",size:1},{tag:"pin",src:"resources/fx/pin.mp3",
+size:1},{tag:"sort",src:"resources/fx/sort.mp3",size:1},{tag:"tick",src:"resources/fx/tick.wav",size:3},{tag:"update",
+src:"resources/fx/update.wav",size:1}];let s;e.loadDefault=function(){s=n(t),console.log("AppEffects::load ->",s)},
+e.getDefaultTagList=function(){return s};const o={};let i=!1;HTMLAudioElement.prototype.stop=function(){this.pause(),
+this.currentTime=0};class r{constructor(e,t){this.src=e,this.init(t)}init(e){let t=[]
+;for(this.size=e;e--;)t[e]=new Audio(this.src);this.audio=t,this.index=0}play(){if(i)return
+;this.audio[this.index++%this.size].play()}pause(){for(let e of this.audio)e.pause()}stop(){
+for(let e of this.audio)e.stop()}destroy(){let e=this.size;for(;e--;)this.audio[e]=null;this.audio.length=this.size=0}
+setVolume(e){for(let t of this.audio)t.volume=e}}function u(e,t,s){return!o[e]&&(o[e]=new r(t,s),!0)}function n(e,t,s){
+if("string"==typeof e)return u(e,t,s);if(Array.isArray(e)){const t=e;let s=[]
+;for(let e of t)u(e.tag,e.src,e.size)&&s.push(e.tag);return s}return!1}e.createSequencialAudio=n,
+e.sequencialPlay=function(e){let t=o[e];t&&t.play()},e.emit=function(e){let t=o[e];t&&t.play()},e.setMute=function(e){
+i=e},e.sequencialStop=function(e){let t=o[e];t&&t.stop()},e.sequencialStopAll=function(){let e=Object.keys(o)
+;if(e)for(let t of e)this.sequencialStop(t)},e.destroy=function(e){let t=o[e];if(t){t.destroy();let s=delete o[e]
+;return s}return!1},e.purgeAll=function(){let e=Object.keys(o);if(e){let t=[];for(let s of e)this.destroy(s)&&t.push(s)
+;console.log("purge success : [%s]",t.join(", "))}},e.setVolume=function(e,t){t<0?t=0:t>1&&(t=1);let s=o[e]
+;s&&s.setVolume(t)},e.setVolumeAll=function(e){let t=Object.keys(o);if(t)for(let s of t)this.setVolume(s,e)},
+e.pause=function(e){let t=o[e];t&&t.pause()}}(_AppEffects||(_AppEffects={})),window.AppEffects=_AppEffects
+;export default void 0;

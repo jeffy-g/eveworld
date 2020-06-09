@@ -1,6 +1,6 @@
 /**
  * @author mrdoob / http://mrdoob.com/
- * @contoributer jeffy-g motrohi@gmail.com
+ * @contoributer jeffy-g <hirotom1107@gmail.com>
  */
 ///<reference types="three"/>
 // DEVNOTE: 1/8/2019, 9:24:39 PM - this class has a bug related to persepective.

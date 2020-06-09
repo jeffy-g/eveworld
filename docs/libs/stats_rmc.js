@@ -12,7 +12,7 @@ var Stats = function () {
 		showPanel( ++ mode % container.children.length );
 	}, false );
 	function addPanel( panel ) {
-		container.append( panel.dom );
+		container.appendChild( panel.dom );
 		return panel;
 	}
 	function showPanel( id ) {

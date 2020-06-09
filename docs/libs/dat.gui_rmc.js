@@ -855,7 +855,7 @@ var BooleanController = function (_Controller) {
       _this.setValue(!_this.__prev);
     }
     dom.bind(_this2.__checkbox, 'change', onChange, false);
-    _this2.domElement.append(_this2.__checkbox);
+    _this2.domElement.appendChild(_this2.__checkbox);
     _this2.updateDisplay();
     return _this2;
   }
@@ -904,14 +904,14 @@ var OptionController = function (_Controller) {
       var opt = document.createElement('option');
       opt.innerHTML = key;
       opt.setAttribute('value', value);
-      _this.__select.append(opt);
+      _this.__select.appendChild(opt);
     });
     _this2.updateDisplay();
     dom.bind(_this2.__select, 'change', function () {
       var desiredValue = this.options[this.selectedIndex].value;
       _this.setValue(desiredValue);
     });
-    _this2.domElement.append(_this2.__select);
+    _this2.domElement.appendChild(_this2.__select);
     return _this2;
   }
   createClass(OptionController, [{
@@ -958,7 +958,7 @@ var StringController = function (_Controller) {
       }
     });
     _this2.updateDisplay();
-    _this2.domElement.append(_this2.__input);
+    _this2.domElement.appendChild(_this2.__input);
     return _this2;
   }
   createClass(StringController, [{
@@ -1092,7 +1092,7 @@ var NumberControllerBox = function (_NumberController) {
       }
     });
     _this2.updateDisplay();
-    _this2.domElement.append(_this2.__input);
+    _this2.domElement.appendChild(_this2.__input);
     return _this2;
   }
   createClass(NumberControllerBox, [{
@@ -1165,8 +1165,8 @@ var NumberControllerSlider = function (_NumberController) {
       }
     }
     _this2.updateDisplay();
-    _this2.__background.append(_this2.__foreground);
-    _this2.domElement.append(_this2.__background);
+    _this2.__background.appendChild(_this2.__foreground);
+    _this2.domElement.appendChild(_this2.__background);
     return _this2;
   }
   createClass(NumberControllerSlider, [{
@@ -1193,7 +1193,7 @@ var FunctionController = function (_Controller) {
       return false;
     });
     dom.addClass(_this2.__button, 'button');
-    _this2.domElement.append(_this2.__button);
+    _this2.domElement.appendChild(_this2.__button);
     return _this2;
   }
   createClass(FunctionController, [{
@@ -1366,15 +1366,15 @@ var ColorController = function (_Controller) {
         _this.__onFinishChange.call(_this, _this.__color.toOriginal());
       }
     }
-    _this2.__saturation_field.append(valueField);
+    _this2.__saturation_field.appendChild(valueField);
     _this2.__selector.append(
       _this2.__field_knob,
       _this2.__saturation_field,
       _this2.__hue_field
     );
-    _this2.__hue_field.append(_this2.__hue_knob);
-    _this2.domElement.append(_this2.__input);
-    _this2.domElement.append(_this2.__selector);
+    _this2.__hue_field.appendChild(_this2.__hue_knob);
+    _this2.domElement.appendChild(_this2.__input);
+    _this2.domElement.appendChild(_this2.__selector);
     _this2.updateDisplay();
     function setSV(e) {
       if (e.type.indexOf('touch') === -1) {
@@ -1482,7 +1482,7 @@ var css = {
     link.type = 'text/css';
     link.rel = 'stylesheet';
     link.href = url;
-    doc.getElementsByTagName('head')[0].append(link);
+    doc.getElementsByTagName('head')[0].appendChild(link);
   },
   inject: function inject(cssContent, indoc) {
     var doc = indoc || document;
@@ -1491,7 +1491,7 @@ var css = {
     injected.textContent = cssContent;
     var head = doc.getElementsByTagName('head')[0];
     try {
-      head.append(injected);
+      head.appendChild(injected);
     } catch (e) {
     }
   }
@@ -1554,8 +1554,8 @@ var CenteredDiv = function () {
       WebkitTransition: '-webkit-transform 0.2s ease-out, opacity 0.2s linear',
       transition: 'transform 0.2s ease-out, opacity 0.2s linear'
     });
-    document.body.append(this.backgroundElement);
-    document.body.append(this.domElement);
+    document.body.appendChild(this.backgroundElement);
+    document.body.appendChild(this.domElement);
     var _this = this;
     dom.bind(this.backgroundElement, 'click', function () {
       _this.hide();
@@ -1625,7 +1625,7 @@ var GUI = function GUI(pars) {
   var params = pars || {};
   this.domElement = document.createElement('div');
   this.__ul = document.createElement('ul');
-  this.domElement.append(this.__ul);
+  this.domElement.appendChild(this.__ul);
   dom.addClass(this.domElement, CSS_NAMESPACE);
   this.__folders = {};
   this.__controllers = [];
@@ -1777,7 +1777,7 @@ var GUI = function GUI(pars) {
       this.domElement.insertBefore(this.__closeButton, this.domElement.childNodes[0]);
     } else {
       dom.addClass(this.__closeButton, GUI.CLASS_CLOSE_BOTTOM);
-      this.domElement.append(this.__closeButton);
+      this.domElement.appendChild(this.__closeButton);
     }
     dom.bind(this.__closeButton, 'click', function () {
       _this.closed = !_this.closed;
@@ -1807,10 +1807,10 @@ var GUI = function GUI(pars) {
         autoPlaceContainer = document.createElement('div');
         dom.addClass(autoPlaceContainer, CSS_NAMESPACE);
         dom.addClass(autoPlaceContainer, GUI.CLASS_AUTO_PLACE_CONTAINER);
-        document.body.append(autoPlaceContainer);
+        document.body.appendChild(autoPlaceContainer);
         autoPlaceVirgin = false;
       }
-      autoPlaceContainer.append(this.domElement);
+      autoPlaceContainer.appendChild(this.domElement);
       dom.addClass(this.domElement, GUI.CLASS_AUTO_PLACE);
     }
     if (!this.parent) {
@@ -2074,12 +2074,12 @@ Common.extend(GUI.prototype,
 function addRow(gui, newDom, liBefore) {
   var li = document.createElement('li');
   if (newDom) {
-    li.append(newDom);
+    li.appendChild(newDom);
   }
   if (liBefore) {
     gui.__ul.insertBefore(li, liBefore);
   } else {
-    gui.__ul.append(li);
+    gui.__ul.appendChild(li);
   }
   gui.onResize();
   return li;
@@ -2244,8 +2244,8 @@ function _add(gui, object, property, params) {
   dom.addClass(name, 'property-name');
   name.innerHTML = controller.property;
   var container = document.createElement('div');
-  container.append(name);
-  container.append(controller.domElement);
+  container.appendChild(name);
+  container.appendChild(controller.domElement);
   var li = addRow(gui, container, params.before);
   dom.addClass(li, GUI.CLASS_CONTROLLER_ROW);
   if (controller instanceof ColorController) {
@@ -2264,7 +2264,7 @@ function addPresetOption(gui, name, setSelected) {
   var opt = document.createElement('option');
   opt.innerHTML = name;
   opt.value = name;
-  gui.__preset_select.append(opt);
+  gui.__preset_select.appendChild(opt);
   if (setSelected) {
     gui.__preset_select.selectedIndex = gui.__preset_select.length - 1;
   }
@@ -2308,6 +2308,7 @@ function addSaveMenu(gui) {
   });
   div.append(
     select,
+    gears,
     button,
     button2,
     button3,
