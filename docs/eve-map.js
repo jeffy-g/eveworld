@@ -40,16 +40,16 @@ e.distanceToLookAt=()=>t.distanceToLookAt()
 ;const a=new THREE.Vector3(0,1,0),l=UniverseUnit.ly(WorldConfig["system size(LY)"])
 ;e.defaultCameraPosition=function(e=a){const t=UniverseUnit.ly(45);this.lookAt(e,new THREE.Vector3(t,t,t))}
 ;e.emitWorld=async t=>{void 0===s&&(s=await async function(e){return fetch(e).then(e=>e.json())
-}("./libs/system-coordinate-map.json")),void 0===r&&(r=View.createSystemTexture(!0));const n=new THREE.PointsMaterial({
-size:l,sizeAttenuation:!0,blending:WorldConfig.blending,map:r,transparent:WorldConfig.transparent,
-opacity:WorldConfig.opacity,depthFunc:WorldConfig.depthFunc,depthTest:!0,depthWrite:!1}),a={},c={Jita:4780224,
-Dodixie:4780224,Amarr:3141615,Hek:15724288,Rens:4780224},d=Object.keys(c);for(let i=0,r=s.length;i<r;i++){const r=s[i]
-;if(d.includes(r.itemName))a.color=new THREE.Color(c[r.itemName]),a.name=r.itemName,a.xyz=[r.x,r.y,-r.z],
-a.radius=r.radius,a.userData=r,e.addSphere(t,a);else{const e=regionMap[r.regionID];let i,s=o[e];if(void 0===s){
-const r=n.clone();r.color.setHex(Util.randomHexColor()),i=new THREE.Geometry,o[e]=s=new THREE.Points(i,r),s.name=e,
-s.userData={systemList:[]},t.add(s)}else i=s.geometry;i.vertices.push(new THREE.Vector3(r.x,r.y,-r.z)),
-s.userData.systemList.push(r)}}window.setTimeout(()=>{const t=e.getRegionObjects();for(const e of Object.values(t))i(e)
-},200)}}(_EVEWorld||(_EVEWorld={}));{const e="initEVEWorld",t="SystemPointerSphere",o=60,n=e=>{
+}("./libs/system-coordinate-map-mini.json")),void 0===r&&(r=View.createSystemTexture(!0))
+;const n=new THREE.PointsMaterial({size:l,sizeAttenuation:!0,blending:WorldConfig.blending,map:r,
+transparent:WorldConfig.transparent,opacity:WorldConfig.opacity,depthFunc:WorldConfig.depthFunc,depthTest:!0,
+depthWrite:!1}),a={},c={Jita:4780224,Dodixie:4780224,Amarr:3141615,Hek:15724288,Rens:4780224},d=Object.keys(c)
+;for(let i=0,r=s.length;i<r;i++){const r=s[i];if(d.includes(r.n))a.color=new THREE.Color(c[r.n]),a.name=r.n,a.xyz=r.vec,
+a.radius=r.r,a.userData=r,e.addSphere(t,a);else{const e=regionMap[r.rid];let i,s=o[e];if(void 0===s){const r=n.clone()
+;r.color.setHex(Util.randomHexColor()),i=new THREE.Geometry,o[e]=s=new THREE.Points(i,r),s.name=e,s.userData={
+systemList:[]},t.add(s)}else i=s.geometry;i.vertices.push(new THREE.Vector3(...r.vec)),s.userData.systemList.push(r)}}
+window.setTimeout(()=>{const t=e.getRegionObjects();for(const e of Object.values(t))i(e)},200)}
+}(_EVEWorld||(_EVEWorld={}));{const e="initEVEWorld",t="SystemPointerSphere",o=60,n=e=>{
 const o=new TitiledSphereMesh(UniverseUnit.ly(WorldConfig["hunter radius(LY)"]),WorldConfig["hunter sphere division"],"eve-system-name sstext-after")
 ;o.name=t,e.add(o)};let i=null,s=null;class r{constructor(e,t){this.camera=e,this.orbit=t}init(){
 const{webGLRenderer:e,labelRenderer:t}=View.getTHREERelated(),o=$dom("webgl-container");o.append(e.domElement),
@@ -82,9 +82,9 @@ const t=C.getSize(),o=s.clone().project(E),n=t.width/2*(+o.x+1),i=t.height/2*(1-
 j&&(console.log(j),j=null))}},rayCastingByMouse:e=>{Util.mousePositionForRayCasting(e,U.mousevec2),
 y.setFromCamera(U.mousevec2,E);const o=y.intersectObjects(f.children,!0);if(null===i&&o.length>0){
 const e=o[0],n=e.object.userData;if(e.object.name!==t){if("Points"===e.object.type){j=n.systemList[e.index]
-;const o=e.object.geometry,i=f.getObjectByName(t);i.setText(j.itemName).dataset.sstext=Util.normalizeSS(j.security),
+;const o=e.object.geometry,i=f.getObjectByName(t);i.setText(j.n).dataset.sstext=Util.normalizeSS(j.ss),
 s=o.vertices[e.index],i.position.copy(s),(()=>{View.updateHuntedDistance(E.position.distanceTo(s)),
-AppEffects.emit(ConfigUI.TagSystemHunt)}).emitDefer(12)}else"Mesh"===e.object.type&&(j=n);j&&console.log(j.itemName)}}}}
+AppEffects.emit(ConfigUI.TagSystemHunt)}).emitDefer(12)}else"Mesh"===e.object.type&&(j=n);j&&console.log(j.n)}}}}
 ;EVEWorld.emitWorld(f).then(()=>{ConfigUI.initGUI(t),ConfigUI.addAnnotationToGui(),
 C.domElement.addEventListener("mousemove",U.rayCastingByMouse),
 C.domElement.addEventListener("mousedown",U.selectByMouse),EVEWorld.addSphere(f),n(f),g(E,c),
