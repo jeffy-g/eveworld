@@ -24,4 +24,4 @@ EVEWorld.updateRegionsColor()},worldConfig:{stepOfRotateY:.01,rotateRadiusAdjust
 "Apply texture":!0,transparent:!1,opacity:1,colorStop0:.1,colorStop1:.3,colorStop2:.7,blending:THREE.AdditiveBlending,
 depthFunc:THREE.AlwaysDepth,regionVisibility:{"Region name":!0,"Text scale":.8,universe:{},wormhole:{ALL:!0}},
 systemHunt:"tick",systemCloseUp:"fadein",closeUpEaseFanction:"easeOutSine",effectVolume:.5,reduceFps:!1,
-PixelRatio:window.devicePixelRatio,gammaFactor:2.2};
+PixelRatio:window.devicePixelRatio};

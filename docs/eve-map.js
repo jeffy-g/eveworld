@@ -20,35 +20,36 @@
 import"./web/js-extenstions.js";import"./web/tkit-audio.js";import UniverseUnit from"./universe-unit.js"
 ;import regionMap from"./extra-data.js";import Util from"./util.js";import{WorldConfig}from"./config.js"
 ;import View,{TitiledSphereMesh}from"./view.js";import ConfigUI from"./config-ui.js";var _EVEWorld;!function(e){let t
-;e.init=e=>{t=e,e.init()};const o={};e.getRegionObjects=()=>o;const n=e=>{let t;console.log("select CSS2DObject:",e),
-t=e.parent instanceof THREE.Points?e.parent.geometry.boundingSphere.center:e.parent.position,EVEWorld.lookAt(t)},i=e=>{
-if(!e.geometry.boundingSphere)return void i.emitDefer(200,null,e)
-;const t=e.geometry.boundingSphere.center,o=View.createCSS2DText(e.name,t.x,t.y,t.z,{className:"region",scale:.8})
-;o.element.onclick=e=>{n(o),$consumeEvent(e)},e.add(o)};let s,r;e.createRegionLabels=()=>{const t=e.getRegionObjects()
-;for(const e of Object.values(t))!e.getObjectByProperty("type","CSS2DObject")&&i(e)},e.removeRegionLabels=()=>{
+;e.init=e=>{t=e,e.init()};const o={};e.getRegionObjects=()=>o;const n=e=>{
+if(!e.geometry.boundingSphere)return void n.emitDefer(200,null,e)
+;const t=e.geometry.boundingSphere.center,o=View.createCSS2DText(e.name,t.x,t.y,t.z,{className:"region",scale:.8});l(o),
+e.add(o)};let i,s;e.createRegionLabels=()=>{const t=e.getRegionObjects()
+;for(const e of Object.values(t))!e.getObjectByProperty("type","CSS2DObject")&&n(e)},e.removeRegionLabels=()=>{
 const t=e.getRegionObjects();for(const e of Object.values(t)){const t=e.getObjectByProperty("type","CSS2DObject")
 ;t&&e.remove(t)}},e.addSphere=(e,t)=>{
-const o=!t,{color:i=new THREE.Color(16645629),xyz:s=[0,0,0],radius:r=UniverseUnit.au(50),name:a="EVEWorld",userData:l}=t||{},c=new THREE.SphereBufferGeometry(50*r,18,18),d=new THREE.MeshBasicMaterial({
-color:i,wireframe:o}),m=new THREE.Mesh(c,d),p=View.createCSS2DText(a,0,50*r,0,{
-rgba:`rgba(${255*i.r}, ${255*i.g}, ${255*i.b}, 0.85)`});return p.element.onclick=e=>{n(p),$consumeEvent(e)},
-m.position.set(...s),m.add(p),l&&(m.userData=l),e.add(m),m
-},e.getSystemTexture=(e=!1)=>(e&&(r=View.createSystemTexture(!0)),r),e.setSystemSize=(e,t=!1)=>{const n=Object.values(o)
-;t&&(e*=UniverseUnit.LY);for(const o of n){const n=o.material;n.sizeAttenuation=t,n.size=e,n.needsUpdate=!0}},
-e.updateRegionColor=e=>{const t=o[e];t&&t.material.color.setHex(Util.randomHexColor())},e.updateRegionsColor=()=>{
-for(const e of Object.values(o)){e.material.color.setRGB(...Util.randomRGBColor())}},e.lookAt=(e,o)=>t.lookAt(e,o),
-e.distanceToLookAt=()=>t.distanceToLookAt()
-;const a=new THREE.Vector3(0,1,0),l=UniverseUnit.ly(WorldConfig["system size(LY)"])
-;e.defaultCameraPosition=function(e=a){const t=UniverseUnit.ly(45);this.lookAt(e,new THREE.Vector3(t,t,t))}
-;e.emitWorld=async t=>{void 0===s&&(s=await async function(e){return fetch(e).then(e=>e.json())
-}("./libs/system-coordinate-map-mini.json")),void 0===r&&(r=View.createSystemTexture(!0))
-;const n=new THREE.PointsMaterial({size:l,sizeAttenuation:!0,blending:WorldConfig.blending,map:r,
-transparent:WorldConfig.transparent,opacity:WorldConfig.opacity,depthFunc:WorldConfig.depthFunc,depthTest:!0,
-depthWrite:!1}),a={},c={Jita:4780224,Dodixie:4780224,Amarr:3141615,Hek:15724288,Rens:4780224},d=Object.keys(c)
-;for(let i=0,r=s.length;i<r;i++){const r=s[i];if(d.includes(r.n))a.color=new THREE.Color(c[r.n]),a.name=r.n,a.xyz=r.vec,
-a.radius=r.r,a.userData=r,e.addSphere(t,a);else{const e=regionMap[r.rid];let i,s=o[e];if(void 0===s){const r=n.clone()
-;r.color.setHex(Util.randomHexColor()),i=new THREE.Geometry,o[e]=s=new THREE.Points(i,r),s.name=e,s.userData={
-systemList:[]},t.add(s)}else i=s.geometry;i.vertices.push(new THREE.Vector3(...r.vec)),s.userData.systemList.push(r)}}
-window.setTimeout(()=>{const t=e.getRegionObjects();for(const e of Object.values(t))i(e)},200)}
+const o=!t,{color:n=new THREE.Color(16645629),xyz:i=[0,0,0],radius:s=UniverseUnit.au(50),name:r="EVEWorld",userData:a}=t||{},c=new THREE.SphereBufferGeometry(50*s,18,18),d=new THREE.MeshBasicMaterial({
+color:n,wireframe:o}),m=new THREE.Mesh(c,d),p=View.createCSS2DText(r,0,50*s,0,{
+rgba:`rgba(${255*n.r}, ${255*n.g}, ${255*n.b}, 0.85)`});return l(p),m.position.set(...i),m.add(p),a&&(m.userData=a),
+e.add(m),m},e.getSystemTexture=(e=!1)=>(e&&(s=View.createSystemTexture(!0)),s),e.setSystemSize=(e,t=!1)=>{
+const n=Object.values(o);t&&(e*=UniverseUnit.LY);for(const o of n){const n=o.material;n.sizeAttenuation=t,n.size=e,
+n.needsUpdate=!0}},e.updateRegionColor=e=>{const t=o[e];t&&t.material.color.setHex(Util.randomHexColor())},
+e.updateRegionsColor=()=>{for(const e of Object.values(o)){e.material.color.setRGB(...Util.randomRGBColor())}},
+e.lookAt=(e,o)=>t.lookAt(e,o),e.distanceToLookAt=()=>t.distanceToLookAt()
+;const r=new THREE.Vector3(0,1,0),a=UniverseUnit.ly(WorldConfig["system size(LY)"]);function l(e){e.element.onclick=t=>{
+(e=>{let t
+;console.log("select CSS2DObject:",e),t=e.parent instanceof THREE.Points?e.parent.geometry.boundingSphere.center:e.parent.position,
+EVEWorld.lookAt(t)})(e),$consumeEvent(t)}}e.defaultCameraPosition=function(e=r){const t=UniverseUnit.ly(45)
+;this.lookAt(e,new THREE.Vector3(t,t,t))};e.emitWorld=async t=>{void 0===i&&(i=await async function(e){
+return fetch(e).then((e=>e.json()))}("./libs/system-coordinate-map-mini.json")),
+void 0===s&&(s=View.createSystemTexture(!0));const r=new THREE.PointsMaterial({size:a,sizeAttenuation:true,
+blending:WorldConfig.blending,map:s,transparent:WorldConfig.transparent,opacity:WorldConfig.opacity,
+depthFunc:WorldConfig.depthFunc,depthTest:!0,depthWrite:!1}),l={},c={Jita:4780224,Dodixie:4780224,Amarr:3141615,
+Hek:15724288,Rens:4780224},d=Object.keys(c);for(let n=0,s=i.length;n<s;n++){const s=i[n]
+;if(d.includes(s.n))l.color=new THREE.Color(c[s.n]),l.name=s.n,l.xyz=s.vec,l.radius=s.r,l.userData=s,
+e.addSphere(t,l);else{const e=regionMap[s.rid];let n,i=o[e];if(void 0===i){const s=r.clone()
+;s.color.setHex(Util.randomHexColor()),n=new THREE.Geometry,o[e]=i=new THREE.Points(n,s),i.name=e,i.userData={
+systemList:[]},t.add(i)}else n=i.geometry;n.vertices.push(new THREE.Vector3(...s.vec)),i.userData.systemList.push(s)}}
+window.setTimeout((()=>{const t=e.getRegionObjects();for(const e of Object.values(t))n(e)}),200)}
 }(_EVEWorld||(_EVEWorld={}));{const e="initEVEWorld",t="SystemPointerSphere",o=60,n=e=>{
 const o=new TitiledSphereMesh(UniverseUnit.ly(WorldConfig["hunter radius(LY)"]),WorldConfig["hunter sphere division"],"eve-system-name sstext-after")
 ;o.name=t,e.add(o)};let i=null,s=null;class r{constructor(e,t){this.camera=e,this.orbit=t}init(){
@@ -85,14 +86,14 @@ const e=o[0],n=e.object.userData;if(e.object.name!==t){if("Points"===e.object.ty
 ;const o=e.object.geometry,i=f.getObjectByName(t);i.setText(j.n).dataset.sstext=Util.normalizeSS(j.ss),
 s=o.vertices[e.index],i.position.copy(s),(()=>{View.updateHuntedDistance(E.position.distanceTo(s)),
 AppEffects.emit(ConfigUI.TagSystemHunt)}).emitDefer(12)}else"Mesh"===e.object.type&&(j=n);j&&console.log(j.n)}}}}
-;EVEWorld.emitWorld(f).then(()=>{ConfigUI.initGUI(t),ConfigUI.addAnnotationToGui(),
+;EVEWorld.emitWorld(f).then((()=>{ConfigUI.initGUI(t),ConfigUI.addAnnotationToGui(),
 C.domElement.addEventListener("mousemove",U.rayCastingByMouse),
 C.domElement.addEventListener("mousedown",U.selectByMouse),EVEWorld.addSphere(f),n(f),g(E,c),
-window.addEventListener("resize",()=>{const e=window.innerWidth,t=window.innerHeight;h.setSize(e,t),C.setSize(e,t),
+window.addEventListener("resize",(()=>{const e=window.innerWidth,t=window.innerHeight;h.setSize(e,t),C.setSize(e,t),
 WorldConfig.helperMode?(ThreeComponents.objectiveCamera.aspect=e/t,
-ThreeComponents.objectiveCamera.updateProjectionMatrix()):(E.aspect=e/t,E.updateProjectionMatrix())},!1),
-EVEWorld.defaultCameraPosition(),requestAnimationFrame(v)}),AppEffects.loadDefault()};window.EVEWorld=_EVEWorld,
-window.Mazh=Util.Mazh,f().then(()=>{
-console.timeEnd(e),AppEffects.setMute(!0),$query("button.dummy-button").addEventListener("click",e=>{
-const t=e.currentTarget.dataset;t.state="on"===t.state?"off":"on",setTimeout(()=>AppEffects.setMute("on"!==t.state),33)
-})})}
+ThreeComponents.objectiveCamera.updateProjectionMatrix()):(E.aspect=e/t,E.updateProjectionMatrix())}),!1),
+EVEWorld.defaultCameraPosition(),requestAnimationFrame(v)})),AppEffects.loadDefault()};window.EVEWorld=_EVEWorld,
+window.Mazh=Util.Mazh,f().then((()=>{
+console.timeEnd(e),AppEffects.setMute(!0),$query("button.dummy-button").addEventListener("click",(e=>{
+const t=e.currentTarget.dataset
+;t.state="on"===t.state?"off":"on",setTimeout((()=>AppEffects.setMute("on"!==t.state)),33)}))}))}

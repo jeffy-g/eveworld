@@ -283,7 +283,7 @@ THREE.OrbitControls = function(object, domElement) {
                 // perspective
                 const position = scope.object.position;
                 offset.copy(position).sub(scope.target);
-                const targetDistance = offset.length();
+                let targetDistance = offset.length();
                 // half of the fov is center to top of screen
                 targetDistance *= Math.tan((scope.object.fov / 2) * Math.PI / 180.0);
                 // we use only clientHeight here so aspect ratio does not distort speed
