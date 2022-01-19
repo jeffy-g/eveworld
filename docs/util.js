@@ -25,11 +25,13 @@ n.randomHexColorA=function(n){return n<0?n=0:n>1&&(n=1),`rgba(${unity()}, ${unit
 n.normalizeSS=function(n){const t=Math.round(10*n)/10;return 1===t?"1.0":0===t?"0.0":t+""},n.convertSSClass=function(n){
 const t=Math.round(10*n)/10;let e;return e=1===t||0===t?t+"_0":t>0?t.toString().replace(".","_"):"null","ss-text-"+e},
 n.mousePositionForRayCasting=function(n,t){
-const e=n.currentTarget,r=e?e.offsetLeft:0,u=e?e.offsetTop:0,o=e?e.offsetWidth:window.innerWidth,i=e?e.offsetHeight:window.innerHeight,a=n.clientX-r,c=n.clientY-u
-;t.x=a/o*2-1,t.y=-c/i*2+1},n.makeEaseContext=function(n,t,e=50){if(n.equals(t))return null;const r={from:n.clone(),
+const e=n.currentTarget,r=e?e.offsetLeft:0,u=e?e.offsetTop:0,o=e?e.offsetWidth:window.innerWidth,a=e?e.offsetHeight:window.innerHeight,i=n.clientX-r,c=n.clientY-u
+;t.x=i/o*2-1,t.y=-c/a*2+1},n.makeEaseContext=function(n,t,e=50){if(n.equals(t))return null;const r={from:n.clone(),
 duration:e};return r.x=t.x-n.x,r.y=t.y-n.y,r.z=t.z-n.z,r},n.arbitraryCoordinatesInLineSeg=function(n,e,r){
 const u=1-r/n.distanceTo(e);return t.copy(n).lerp(e,u)};const t=new THREE.Vector3;let e;n.lerpVector3=function(n,t,e){
-return t.clone().sub(n).multiplyScalar(e).add(n)},function(n){n.linearTween=function(n,t,e,r){return e*n/r+t},
+return t.clone().sub(n).multiplyScalar(e).add(n)},n.addVector3To=function(n,t){
+const e=n.array,r=new Float32Array(e.length+3);let u=0;for(;u<e.length;)r[u]=e[u],r[u+1]=e[u+1],r[u+2]=e[u+2],u+=3
+;r[u]=t[0],r[u+1]=t[1],r[u+2]=t[2],n.array=r,n.count+=1},function(n){n.linearTween=function(n,t,e,r){return e*n/r+t},
 n.easeInQuad=function(n,t,e,r){return e*(n/=r)*n+t},n.easeOutQuad=function(n,t,e,r){return-e*(n/=r)*(n-2)+t},
 n.easeInOutQuad=function(n,t,e,r){return(n/=r/2)<1?e/2*n*n+t:-e/2*(--n*(n-2)-1)+t},n.easeInCubic=function(n,t,e,r){
 return e*(n/=r)*n*n+t},n.easeOutCubic=function(n,t,e,r){return n/=r,e*(--n*n*n+1)+t},n.easeInOutCubic=function(n,t,e,r){
