@@ -83,11 +83,11 @@ const t=b.getSize(),o=s.clone().project(E),n=t.width/2*(+o.x+1),i=t.height/2*(1-
 ;n>=r-5&&n<=r+5&&i>=a-5&&i<=a+5&&(EVEWorld.lookAt(s)&&AppEffects.emit(ConfigUI.TagSystemCloseUp),s=null,
 j&&(console.log(j),j=null))}},rayCastingByMouse:e=>{Util.mousePositionForRayCasting(e,U.mousevec2),
 y.setFromCamera(U.mousevec2,E);const o=y.intersectObjects(f.children,!0);if(null===i&&o.length>0){
-const e=o[0],n=e.object.userData;if(e.object.name!==t){if("Points"===e.object.type){let o=e.index;j=n.systemList[o]
-;const i=e.object.geometry,r=f.getObjectByName(t);r.setText(j.n).dataset.sstext=Util.normalizeSS(j.ss)
+const e=o[0],n=e.object.userData;if(e.object.name!==t){let o=!0;if("Points"===e.object.type){let o=e.index
+;j=n.systemList[o];const i=e.object.geometry,r=f.getObjectByName(t);r.setText(j.n).dataset.sstext=Util.normalizeSS(j.ss)
 ;const a=i.attributes.position.array;s=new THREE.Vector3(a[o*=3],a[o+1],a[o+2]),r.position.copy(s),(()=>{
 View.updateHuntedDistance(E.position.distanceTo(s)),AppEffects.emit(ConfigUI.TagSystemHunt)}).emitDefer(12)
-}else"Mesh"===e.object.type&&(j=n);j&&console.log(j.n)}}}};EVEWorld.emitWorld(f).then((()=>{ConfigUI.initGUI(t),
+}else"Mesh"===e.object.type?j=n:o=!1;o&&console.log(j.n)}}}};EVEWorld.emitWorld(f).then((()=>{ConfigUI.initGUI(t),
 ConfigUI.addAnnotationToGui(),b.domElement.addEventListener("mousemove",U.rayCastingByMouse),
 b.domElement.addEventListener("mousedown",U.selectByMouse),EVEWorld.addSphere(f),n(f),g(E,c),
 window.addEventListener("resize",(()=>{const e=window.innerWidth,t=window.innerHeight;h.setSize(e,t),b.setSize(e,t),

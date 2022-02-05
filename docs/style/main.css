@@ -87,7 +87,7 @@ body {
   color: white;
 }
 
-.dg.ac {
+.dg.ac, .lil-gui.autoPlace {
   z-index: 5000;
 }
 
