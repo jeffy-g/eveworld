@@ -11,6 +11,7 @@
 	(global = global || self, factory(global.lil = {}));
 }(this, (function (exports) { 'use strict';
 
+	const listenerParam = { passive: true };
 	/**
 	 * Base class for all controllers.
 	 */
@@ -394,7 +395,7 @@
 			this.$input.addEventListener( 'change', () => {
 				this.setValue( this.$input.checked );
 				this._callOnFinishChange();
-			} );
+			}, listenerParam);
 
 			this.$disable = this.$input;
 
@@ -538,29 +539,29 @@
 
 			this.$input.addEventListener( 'input', () => {
 				this._setValueFromHexString( this.$input.value );
-			} );
+			}, listenerParam);
 
 			this.$input.addEventListener( 'blur', () => {
 				this._callOnFinishChange();
-			} );
+			}, listenerParam);
 
 			this.$text.addEventListener( 'input', () => {
 				const tryParse = normalizeColorString( this.$text.value );
 				if ( tryParse ) {
 					this._setValueFromHexString( tryParse );
 				}
-			} );
+			}, listenerParam);
 
 			this.$text.addEventListener( 'focus', () => {
 				this._textFocused = true;
 				this.$text.select();
-			} );
+			}, listenerParam);
 
 			this.$text.addEventListener( 'blur', () => {
 				this._textFocused = false;
 				this.updateDisplay();
 				this._callOnFinishChange();
-			} );
+			}, listenerParam);
 
 			this.$disable = this.$text;
 
@@ -625,10 +626,10 @@
 			this.$button.addEventListener( 'click', e => {
 				e.preventDefault();
 				this.getValue().call( this.object );
-			} );
+			});
 
 			// enables :active pseudo class on mobile
-			this.$button.addEventListener( 'touchstart', () => { } );
+			this.$button.addEventListener( 'touchstart', () => { }, listenerParam);
 
 			this.$disable = this.$button;
 
@@ -774,8 +775,8 @@
 				initValue = this.getValue();
 				dragDelta = 0;
 
-				window.addEventListener( 'mousemove', onMouseMove );
-				window.addEventListener( 'mouseup', onMouseUp );
+				window.addEventListener( 'mousemove', onMouseMove);
+				window.addEventListener( 'mouseup', onMouseUp, listenerParam);
 
 			};
 
@@ -844,12 +845,12 @@
 				this._callOnFinishChange();
 			};
 
-			this.$input.addEventListener( 'input', onInput );
-			this.$input.addEventListener( 'keydown', onKeyDown );
-			this.$input.addEventListener( 'wheel', onWheel );
-			this.$input.addEventListener( 'mousedown', onMouseDown );
-			this.$input.addEventListener( 'focus', onFocus );
-			this.$input.addEventListener( 'blur', onBlur );
+			this.$input.addEventListener( 'input', onInput, listenerParam);
+			this.$input.addEventListener( 'keydown', onKeyDown);
+			this.$input.addEventListener( 'wheel', onWheel);
+			this.$input.addEventListener( 'mousedown', onMouseDown, listenerParam);
+			this.$input.addEventListener( 'focus', onFocus, listenerParam);
+			this.$input.addEventListener( 'blur', onBlur, listenerParam);
 
 		}
 
@@ -890,8 +891,8 @@
 			const mouseDown = e => {
 				this._setDraggingStyle( true );
 				setValueFromX( e.clientX );
-				window.addEventListener( 'mousemove', mouseMove );
-				window.addEventListener( 'mouseup', mouseUp );
+				window.addEventListener( 'mousemove', mouseMove, listenerParam);
+				window.addEventListener( 'mouseup', mouseUp, listenerParam);
 			};
 
 			const mouseMove = e => {
@@ -936,8 +937,8 @@
 
 				}
 
-				window.addEventListener( 'touchmove', onTouchMove );
-				window.addEventListener( 'touchend', onTouchEnd );
+				window.addEventListener( 'touchmove', onTouchMove, listenerParam);
+				window.addEventListener( 'touchend', onTouchEnd, listenerParam);
 
 			};
 
@@ -1007,9 +1008,9 @@
 
 			};
 
-			this.$slider.addEventListener( 'mousedown', mouseDown );
-			this.$slider.addEventListener( 'touchstart', onTouchStart );
-			this.$slider.addEventListener( 'wheel', onWheel );
+			this.$slider.addEventListener( 'mousedown', mouseDown, listenerParam);
+			this.$slider.addEventListener( 'touchstart', onTouchStart, listenerParam);
+			this.$slider.addEventListener( 'wheel', onWheel, listenerParam);
 
 		}
 
@@ -1147,15 +1148,15 @@
 			this.$select.addEventListener( 'change', () => {
 				this.setValue( this._values[ this.$select.selectedIndex ] );
 				this._callOnFinishChange();
-			} );
+			}, listenerParam);
 
 			this.$select.addEventListener( 'focus', () => {
 				this.$display.classList.add( 'focus' );
-			} );
+			}, listenerParam);
 
 			this.$select.addEventListener( 'blur', () => {
 				this.$display.classList.remove( 'focus' );
-			} );
+			}, listenerParam);
 
 			this.$widget.appendChild( this.$select );
 			this.$widget.appendChild( this.$display );
@@ -1188,17 +1189,17 @@
 
 			this.$input.addEventListener( 'input', () => {
 				this.setValue( this.$input.value );
-			} );
+			}, listenerParam);
 
 			this.$input.addEventListener( 'keydown', e => {
 				if ( e.code === 'Enter' ) {
 					this.$input.blur();
 				}
-			} );
+			}, listenerParam);
 
 			this.$input.addEventListener( 'blur', () => {
 				this._callOnFinishChange();
-			} );
+			}, listenerParam);
 
 			this.$widget.appendChild( this.$input );
 
@@ -1763,16 +1764,16 @@
 			this.$title.setAttribute( 'aria-expanded', true );
 			this.$title.setAttribute( 'tabindex', 0 );
 
-			this.$title.addEventListener( 'click', () => this.openAnimated( this._closed ) );
+			this.$title.addEventListener( 'click', () => this.openAnimated( this._closed ), listenerParam);
 			this.$title.addEventListener( 'keydown', e => {
 				if ( e.code === 'Enter' || e.code === 'Space' ) {
 					e.preventDefault();
 					this.$title.click();
 				}
-			} );
+			}, listenerParam);
 
 			// enables :active pseudo class on mobile
-			this.$title.addEventListener( 'touchstart', () => { } );
+			this.$title.addEventListener( 'touchstart', () => { }, listenerParam);
 
 			/**
 			 * The DOM element that contains children.
@@ -1826,8 +1827,8 @@
 			}
 
 			// Don't fire global key events while typing in the GUI:
-			this.domElement.addEventListener( 'keydown', e => e.stopPropagation() );
-			this.domElement.addEventListener( 'keyup', e => e.stopPropagation() );
+			this.domElement.addEventListener( 'keydown', e => e.stopPropagation(), listenerParam);
+			this.domElement.addEventListener( 'keyup', e => e.stopPropagation(), listenerParam);
 
 		}
 
@@ -2095,7 +2096,7 @@
 					this.$children.removeEventListener( 'transitionend', onTransitionEnd );
 				};
 
-				this.$children.addEventListener( 'transitionend', onTransitionEnd );
+				this.$children.addEventListener( 'transitionend', onTransitionEnd, listenerParam);
 
 				// todo: this is wrong if children's scrollHeight makes for a gui taller than maxHeight
 				const targetHeight = !open ? 0 : this.$children.scrollHeight;

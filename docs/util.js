@@ -26,8 +26,10 @@ n.normalizeSS=function(n){const t=Math.round(10*n)/10;return 1===t?"1.0":0===t?"
 const t=Math.round(10*n)/10;let e;return e=1===t||0===t?t+"_0":t>0?t.toString().replace(".","_"):"null","ss-text-"+e},
 n.mousePositionForRayCasting=function(n,t){
 const e=n.currentTarget,r=e?e.offsetLeft:0,u=e?e.offsetTop:0,o=e?e.offsetWidth:window.innerWidth,a=e?e.offsetHeight:window.innerHeight,i=n.clientX-r,c=n.clientY-u
-;t.x=i/o*2-1,t.y=-c/a*2+1},n.makeEaseContext=function(n,t,e=50){if(n.equals(t))return null;const r={from:n.clone(),
-duration:e};return r.x=t.x-n.x,r.y=t.y-n.y,r.z=t.z-n.z,r},n.arbitraryCoordinatesInLineSeg=function(n,e,r){
+;t.x=i/o*2-1,t.y=-c/a*2+1},n.findIntersectedSystem=function(n,t){for(let e=0,r=n.length;e<r;){const r=n[e++],u=r.object
+;if(u.name){for(let n=0,e=t.length;n<e;)if(t[n++]===u.name)return null;return"Points"===u.type||"Mesh"===u.type?r:null}}
+return null},n.makeEaseContext=function(n,t,e=50){if(n.equals(t))return null;const r={from:n.clone(),duration:e}
+;return r.x=t.x-n.x,r.y=t.y-n.y,r.z=t.z-n.z,r},n.arbitraryCoordinatesInLineSeg=function(n,e,r){
 const u=1-r/n.distanceTo(e);return t.copy(n).lerp(e,u)};const t=new THREE.Vector3;let e;n.lerpVector3=function(n,t,e){
 return t.clone().sub(n).multiplyScalar(e).add(n)},n.addVector3To=function(n,t){
 const e=n.array,r=new Float32Array(e.length+3);let u=0;for(;u<e.length;)r[u]=e[u],r[u+1]=e[u+1],r[u+2]=e[u+2],u+=3
