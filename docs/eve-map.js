@@ -100,4 +100,5 @@ ThreeComponents.objectiveCamera.updateProjectionMatrix()):(f.aspect=e/t,f.update
 EVEWorld.defaultCameraPosition(),requestAnimationFrame(w)})),AppEffects.loadDefault()};window.EVEWorld=_EVEWorld,
 window.Mazh=Util.Mazh,window.runEVEWorld=t=>{console.time(e),f().then((()=>{console.timeEnd(e),AppEffects.setMute(!0),
 $query("button.dummy-button").addEventListener("click",(e=>{const t=e.currentTarget.dataset
-;t.state="on"===t.state?"off":"on",setTimeout((()=>AppEffects.setMute("on"!==t.state)),33)})),t()}))}}
+;t.state="on"===t.state?"off":"on",setTimeout((()=>AppEffects.setMute("on"!==t.state)),33)})),"function"==typeof t&&t()
+}))}}

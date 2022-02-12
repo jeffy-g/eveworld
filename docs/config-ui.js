@@ -23,7 +23,7 @@ import UniverseUnit from"./universe-unit.js";import Util from"./util.js";import{
 ;for(const n of Object.values(o))e(n.material)}var ConfigUI;!function(e){function o(e){
 void 0===ThreeComponents[e]&&View.createHelpers()}function n(e,o){const n=t(e);n&&(n.element.style.opacity=+o+"")}
 function t(e){return e.getObjectByProperty("type","CSS2DObject")}e.initGUI=function(a){
-const{camera:i,raycaster:d,scene:r,webGLRenderer:s}=View.getTHREERelated(),l=new lil.GUI({width:340,closeOnTop:!0,load:{
+const{camera:i,raycaster:d,scene:r,webGLRenderer:s}=View.getTHREERelated(),l=new lil.GUI({closeOnTop:!0,load:{
 preset:"Default",close:!1,remembered:{Default:{0:Util.deepClone(WorldConfig)}}}});let c;l.load(WorldConfig),
 l.add(WorldConfig,"helperMode").onChange((e=>{o("cameraHelper"),e&&c.getValue()&&c.setValue(!e),
 ThreeComponents.cameraHelper.visible=e})),l.add(WorldConfig,"showAxes").onChange((e=>{o("axes"),

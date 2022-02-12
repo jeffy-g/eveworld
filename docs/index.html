@@ -1,19 +1,13 @@
 <!DOCTYPE html>
  
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>EVE world map (v1.4.0-beta powered by three.js)</title>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHPX2EN11Q"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-LHPX2EN11Q');
-    </script>
+    <meta name="description" content="EVE World Map powered by threejs"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=4, shrink-to-fit=no"/>
+    <title>EVE world map (v1.4.1-beta powered by three.js)</title>
 
-    <script src="./loader/unzip.min.js"></script>
-    <script src="./loader/compressed-script-loader.js"></script>
+    <script defer src="./loader/unzip.min.js"></script>
 
     <script defer src="https://cdn.jsdelivr.net/npm/three@latest/build/three.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/stats.js@latest/build/stats.min.js"></script>
@@ -21,14 +15,15 @@
     <script defer src="./libs/controls/orbit-conrols-ex.js"></script>
     <script defer src="./libs/renderers/css-2d-renderer.js"></script>
 
-    <script type="module" src="./eve-map.js"></script>
+    <script defer type="module" src="./eve-map.js"></script>
+    <script defer src="./loader/compressed-script-loader.js"></script>
     <link rel="icon" type="image/png" href="./resources/eve-icon.png">
 </head>
 <body>
-    <div id="stats-container" class="stats-container"></div>
-    <div id="webgl-container" class="webgl-container"></div>
+    <div id="stats-container" class="stats-container world-view-position"></div>
+    <div id="webgl-container" class="webgl-container world-view-position"></div>
     <link rel="stylesheet" href="./style/main.css"/>
-    <button class="dummy-button" data-state="off">
+    <button class="dummy-button" role="button" aria-label="volume button" data-state="off">
     </button>
 </body>
 </html>
