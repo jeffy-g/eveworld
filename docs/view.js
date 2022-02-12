@@ -43,24 +43,24 @@ $query(".ease-function").textContent=e},e.updateLookAtDistance=function(){
 const e=EVEWorld.distanceToLookAt(),[o,a,s]=Array.from($queryAll(".lookat-distance"))
 ;o.textContent=(e/UniverseUnit.LY).toFixed(8),a.textContent=(e/UniverseUnit.AU).toLocaleString(n,t),
 s.textContent=(e/1e3).toLocaleString(n,t)},e.updateHuntedDistance=function(e){
-$query(".hunted-distance").textContent=(e/UniverseUnit.LY).toFixed(8)};let o=!1;function a(){
-return"undefined"==typeof ThreeComponents?s():ThreeComponents}function s(e=window.innerWidth,t=window.innerHeight){
+$query(".hunted-distance").textContent=(e/UniverseUnit.LY).toFixed(8)};let o=!1;function a(e,t){if(!o){
+console.log("View::createHelpers");const n=new THREE.CameraHelper(t);n.visible=WorldConfig.helperMode
+;const a=new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1e3,UniverseUnit.ly(5e3));{
+const e=UniverseUnit.ly(100);a.position.set(e,4*e,e),a.lookAt(0,0,0)}let s;{const e=UniverseUnit.ly(64),t=16,n=16
+;s=new THREE.PolarGridHelper(e,t,n,128,new THREE.Color(3421236),new THREE.Color(5658198)),s.visible=WorldConfig.showGrid
+}const i=new THREE.AxesHelper(UniverseUnit.ly(50));return i.visible=WorldConfig.showAxes,
+e.add((new THREE.Object3D).add(i,s,n,a)),o=!0,{axes:i,gridHelper:s,cameraHelper:n,objectiveCamera:a,
+orbitHelper:new THREE.OrbitControls(a)}}}function s(e=window.innerWidth,t=window.innerHeight){
 $dom("stats-container").innerHTML="\n<div class=\"extra-stat\">\n    <span>USING EASE: </span>\n    <span class=\"ease-function\"></span> | LOOKAT DISTANCE: <span\n    class=\"lookat-distance\" data-unit=\"LY,\"></span>\n    <span class=\"lookat-distance\" data-unit=\"AU,\"></span>\n    <span class=\"lookat-distance\" data-unit=\"km;\"></span>\n</div>\n<div class=\"extra-stat\">\n    <span>Distance to selected System: </span>\n    <span class=\"hunted-distance\" data-unit=\"LY\"></span>\n</div>"
 ;const n=new Stats;n.showPanel(0),n.dom.className="webgl-stats",$dom("stats-container").append(n.dom)
-;const o=new THREE.Scene,a=new THREE.PerspectiveCamera(WorldConfig.fov,e/t,1e3,UniverseUnit.ly(974.91));o.add(a)
-;const s=new THREE.Raycaster;s.params.Points.threshold=UniverseUnit.LY*WorldConfig["Ray threshold(LY)"]
-;const i=new THREE.WebGLRenderer({antialias:!0,logarithmicDepthBuffer:!0});i.domElement.classList.add("eve-world"),
-i.setClearColor(0,1),i.setPixelRatio(WorldConfig.PixelRatio),i.setSize(e,t);const r=new THREE.CSS2DRenderer
-;r.setSize(e,t),r.domElement.classList.add("css2d-view")
-;const d=new THREE.OrbitControls(a,i.domElement),l=new THREE.OrbitControls(a,r.domElement)
-;return l.keyPanSpeed=d.keyPanSpeed=.8,d.enableDamping=!0,d.dampingFactor=.3,l.enableDamping=!0,l.dampingFactor=.3,
-window.ThreeComponents={stats:n,orbit:d,orbit2:l,scene:o,camera:a,raycaster:s,webGLRenderer:i,labelRenderer:r}}
-e.createHelpers=function(){if(!o){console.log("View::createHelpers");const{scene:e,camera:t}=a(),n=new THREE.Object3D
-;e.add(n);{const e=new THREE.CameraHelper(t);e.visible=WorldConfig.helperMode,n.add(e),ThreeComponents.cameraHelper=e}{
-const e=new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1e3,UniverseUnit.ly(5e3)),t=UniverseUnit.ly(100)
-;e.position.set(t,12*t,t),
-e.lookAt(0,0,0),ThreeComponents.objectiveCamera=e,ThreeComponents.orbitHelper=new THREE.OrbitControls(e)}{
-const e=UniverseUnit.ly(64),t=16,o=16,a=new THREE.PolarGridHelper(e,t,o,128,new THREE.Color(3421236),new THREE.Color(5658198))
-;a.visible=WorldConfig.showGrid,ThreeComponents.gridHelper=a,n.add(a)}{const e=new THREE.AxesHelper(UniverseUnit.ly(50))
-;e.visible=WorldConfig.showAxes,n.add(e),ThreeComponents.axes=e}o=!0}},e.getTHREERelated=a,e.createTHREERelated=s
-}(View||(View={}));export default View;
+;const o=new THREE.Scene,s=new THREE.PerspectiveCamera(WorldConfig.fov,e/t,1e3,UniverseUnit.ly(974.91));o.add(s)
+;const i=new THREE.Raycaster;i.params.Points.threshold=UniverseUnit.LY*WorldConfig["Ray threshold(LY)"]
+;const r=new THREE.WebGLRenderer({antialias:!0,logarithmicDepthBuffer:!0});r.domElement.classList.add("eve-world"),
+r.setClearColor(0,1),r.setPixelRatio(WorldConfig.PixelRatio),r.setSize(e,t);const l=new THREE.CSS2DRenderer
+;l.setSize(e,t),l.domElement.classList.add("css2d-view")
+;const d=new THREE.OrbitControls(s,r.domElement),c=new THREE.OrbitControls(s,l.domElement)
+;c.keyPanSpeed=d.keyPanSpeed=.8,d.enableDamping=!0,d.dampingFactor=.3,c.enableDamping=!0,c.dampingFactor=.3
+;const p=a(o,s);return window.ThreeComponents=Object.assign(p,{stats:n,orbit:d,orbit2:c,scene:o,camera:s,raycaster:i,
+webGLRenderer:r,labelRenderer:l})}e.createHelpers=a,e.getTHREERelated=function(){
+return"undefined"==typeof ThreeComponents?s():ThreeComponents},e.createTHREERelated=s}(View||(View={}))
+;export default View;

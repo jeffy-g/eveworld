@@ -29,9 +29,9 @@ e.add(o)};e.createRegionLabels=()=>{const t=e.getRegionObjects()
 const t=e.getRegionObjects();for(const e of Object.values(t)){const t=e.getObjectByProperty("type","CSS2DObject")
 ;t&&e.remove(t)}},e.addSphere=(e,t)=>{
 const o=!t,{color:n=new THREE.Color(16645629),xyz:s=[0,0,0],radius:i=UniverseUnit.au(50),name:r=WORLD_CENTER_NAME,userData:l}=t||{},c=new THREE.SphereBufferGeometry(50*i,18,18),d=new THREE.MeshBasicMaterial({
-color:n,wireframe:o}),m=new THREE.Mesh(c,d);m.name=r;const u=View.createCSS2DText(r,0,50*i,0,{
-rgba:`rgba(${255*n.r}, ${255*n.g}, ${255*n.b}, 0.85)`});return a(u),m.position.set(...s),m.add(u),l&&(m.userData=l),
-e.add(m),m};let s=View.createSystemTexture(!0);e.getSystemTexture=(e=!1)=>(e&&(s=View.createSystemTexture(!0)),s),
+color:n,wireframe:o}),u=new THREE.Mesh(c,d);u.name=r;const m=View.createCSS2DText(r,0,50*i,0,{
+rgba:`rgba(${255*n.r}, ${255*n.g}, ${255*n.b}, 0.85)`});return a(m),u.position.set(...s),u.add(m),l&&(u.userData=l),
+e.add(u),u};let s=View.createSystemTexture(!0);e.getSystemTexture=(e=!1)=>(e&&(s=View.createSystemTexture(!0)),s),
 e.setSystemSize=(e,t=!1)=>{const n=Object.values(o);t&&(e*=UniverseUnit.LY);for(const o of n){const n=o.material
 ;n.sizeAttenuation=t,n.size=e,n.needsUpdate=!0}},e.updateRegionColor=e=>{const t=o[e]
 ;t&&t.material.color.setHex(Util.randomHexColor())},e.updateRegionsColor=()=>{for(const e of Object.values(o)){
@@ -70,35 +70,33 @@ return this.camera.position.distanceTo(this.orbit.target)}fireSystemHunted(e){
 const{scene:t,camera:o}=View.getTHREERelated();console.log(e.n);const n=t.getObjectByName(SYSTEM_HUNTER_NAME)
 ;n.setText(e.n).dataset.sstext=Util.normalizeSS(e.ss),r=e;const i=new THREE.Vector3(...e.vec);s=i,n.position.copy(i),
 (()=>{View.updateHuntedDistance(o.position.distanceTo(i)),AppEffects.emit(ConfigUI.TagSystemHunt)}).emitDefer(12)}}
-let r=null;const a=!1,l=WorldConfig.worldConfig;let c,d,m=0,u=!1;const E=(e,t,o)=>{d+=e
+let r=null;const a=!1,l=WorldConfig.worldConfig;let c,d,u=0,m=!1;const E=(e,t,o)=>{d+=e
 ;const n=THREE.MathUtils.degToRad(d),s=t.position,i=o.target,r=c+UniverseUnit.ly(l.rotateRadiusAdjust)
 ;s.x=r*Math.sin(n)+i.x,s.z=r*Math.cos(n)+i.z,t.lookAt(i)},p=(e,t)=>{d=THREE.MathUtils.radToDeg(t.getAzimuthalAngle())
-;const o=e.position.distanceTo(t.target)**2,n=(e.position.y-t.target.y)**2;c=Math.sqrt(o-n)},f=async()=>{
-const{stats:e,orbit:t,orbit2:c,scene:d,camera:f,raycaster:g,webGLRenderer:y,labelRenderer:C}=View.getTHREERelated()
-;EVEWorld.init(new i(f,t));let T=0,h=0,b=!0;const w=()=>{if(requestAnimationFrame(w),WorldConfig.reduceFps&&T++%2)return
-;e.update();const o=EVEWorld.distanceToLookAt();let s;h^o&&(h=o,View.updateLookAtDistance()),n&&(()=>{
-const e=n.step,o=e.duration;if(++m<=o){const s=n.easeFn;if(n.lastCameraPosition){const e=s(m,0,1,o)
-;f.position.lerp(n.lastCameraPosition,e)}const i=e.from,r=t.target;r.x=s(m,i.x,e.x,o),r.y=s(m,i.y,e.y,o),
-r.z=s(m,i.z,e.z,o),a&&n.trace.push(r.clone())}else{n.lastCameraPosition&&f.position.copy(n.lastCameraPosition)
-;const e=n.target;f.lookAt(e),t.target=e,c.target=e,a&&console.log(n.trace),n=null,m=0}})(),t.update(),c.update(),
-l.moveCamera?(u||(u=!0,p(f,t)),E(l.stepOfRotateY,f,t)):u&&(u=!1),WorldConfig.helperMode?(b&&(t.dispose(),c.dispose(),
-ThreeComponents.orbitHelper.bindEvents(),b=!1),ThreeComponents.cameraHelper.update(),
-s=ThreeComponents.objectiveCamera):(b||(t.bindEvents(),
-c.bindEvents(),ThreeComponents.orbitHelper&&ThreeComponents.orbitHelper.dispose(),b=!0),s=f),y.render(d,s),C.render(d,s)
-},S=[SYSTEM_HUNTER_NAME,WORLD_CENTER_NAME],R={mousePos:{x:0,y:0},selectByMouse:e=>{if(s){e.preventDefault()
-;const t=C.getSize(),o=s.clone().project(f),n=t.width/2*(+o.x+1),i=t.height/2*(1-o.y),{clientX:a,clientY:l}=e
+;const o=e.position.distanceTo(t.target)**2,n=(e.position.y-t.target.y)**2;c=Math.sqrt(o-n)};let f;const g=async()=>{
+const{stats:e,orbit:t,orbit2:c,scene:d,raycaster:g,camera:y,webGLRenderer:C,labelRenderer:T,orbitHelper:b,objectiveCamera:h}=View.getTHREERelated()
+;EVEWorld.init(new i(y,t)),f=y;let w=0,S=0,R=!0;const U=()=>{if(requestAnimationFrame(U),
+WorldConfig.reduceFps&&w++%2)return;e.update();const o=EVEWorld.distanceToLookAt();S^o&&(S=o,
+View.updateLookAtDistance()),n&&(()=>{const e=n.step,o=e.duration;if(++u<=o){const s=n.easeFn;if(n.lastCameraPosition){
+const e=s(u,0,1,o);y.position.lerp(n.lastCameraPosition,e)}const i=e.from,r=t.target;r.x=s(u,i.x,e.x,o),
+r.y=s(u,i.y,e.y,o),r.z=s(u,i.z,e.z,o),a&&n.trace.push(r.clone())}else{
+n.lastCameraPosition&&y.position.copy(n.lastCameraPosition);const e=n.target;y.lookAt(e),t.target=e,c.target=e,
+a&&console.log(n.trace),n=null,u=0}})(),t.update(),c.update(),l.moveCamera?(m||(m=!0,p(y,t)),
+E(l.stepOfRotateY,y,t)):m&&(m=!1),WorldConfig.helperMode?(R&&(t.dispose(),c.dispose(),b.bindEvents(),R=!1),
+ThreeComponents.cameraHelper.update(),f=h):(R||(t.bindEvents(),c.bindEvents(),b.dispose(),R=!0),f=y),C.render(d,f),
+T.render(d,f)},A=[SYSTEM_HUNTER_NAME,WORLD_CENTER_NAME],M={mousePos:{x:0,y:0},selectByMouse:e=>{if(s){e.preventDefault()
+;const t=T.getSize(),o=s.clone().project(f),n=t.width/2*(+o.x+1),i=t.height/2*(1-o.y),{clientX:a,clientY:l}=e
 ;n>=a-5&&n<=a+5&&i>=l-5&&i<=l+5&&(EVEWorld.lookAt(s)&&AppEffects.emit(ConfigUI.TagSystemCloseUp),s=null,
-r&&(console.log(r),r=null))}},rayCastingByMouse:e=>{e.preventDefault(),Util.mousePositionForRayCasting(e,R.mousePos),
-g.setFromCamera(R.mousePos,f);const t=g.intersectObjects(d.children,!0),o=Util.findIntersectedSystem(t,S)
+r&&(console.log(r),r=null))}},rayCastingByMouse:e=>{e.preventDefault(),Util.mousePositionForRayCasting(e,M.mousePos),
+g.setFromCamera(M.mousePos,f);const t=g.intersectObjects(d.children,!0),o=Util.findIntersectedSystem(t,A)
 ;if(null===n&&o){let e;e="Points"===o.object.type?o.object.userData.systemList[o.index]:o.object.userData,
 EVEWorld.fireSystemHunted(e)}}};EVEWorld.emitWorld(d).then((()=>{ConfigUI.initGUI(SYSTEM_HUNTER_NAME),
-ConfigUI.addAnnotationToGui(),C.domElement.addEventListener("mousemove",R.rayCastingByMouse),
-C.domElement.addEventListener("mousedown",R.selectByMouse),EVEWorld.addSphere(d),o(d),p(f,t),
-window.addEventListener("resize",(()=>{const e=window.innerWidth,t=window.innerHeight;y.setSize(e,t),C.setSize(e,t),
-WorldConfig.helperMode?(ThreeComponents.objectiveCamera.aspect=e/t,
-ThreeComponents.objectiveCamera.updateProjectionMatrix()):(f.aspect=e/t,f.updateProjectionMatrix())}),!1),
-EVEWorld.defaultCameraPosition(),requestAnimationFrame(w)})),AppEffects.loadDefault()};window.EVEWorld=_EVEWorld,
-window.Mazh=Util.Mazh,window.runEVEWorld=t=>{console.time(e),f().then((()=>{console.timeEnd(e),AppEffects.setMute(!0),
+ConfigUI.addAnnotationToGui(),T.domElement.addEventListener("mousemove",M.rayCastingByMouse),
+T.domElement.addEventListener("mousedown",M.selectByMouse),EVEWorld.addSphere(d),o(d),p(y,t),
+window.addEventListener("resize",(()=>{const e=window.innerWidth,t=window.innerHeight;C.setSize(e,t),T.setSize(e,t),
+WorldConfig.helperMode?(h.aspect=e/t,h.updateProjectionMatrix()):(y.aspect=e/t,y.updateProjectionMatrix())}),!1),
+EVEWorld.defaultCameraPosition(),requestAnimationFrame(U)})),AppEffects.loadDefault()};window.EVEWorld=_EVEWorld,
+window.Mazh=Util.Mazh,window.runEVEWorld=t=>{console.time(e),g().then((()=>{console.timeEnd(e),AppEffects.setMute(!0),
 $query("button.dummy-button").addEventListener("click",(e=>{const t=e.currentTarget.dataset
 ;t.state="on"===t.state?"off":"on",setTimeout((()=>AppEffects.setMute("on"!==t.state)),33)})),"function"==typeof t&&t()
 }))}}
