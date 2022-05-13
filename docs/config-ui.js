@@ -35,15 +35,15 @@ g.add(WorldConfig,"Ray threshold(LY)").min(.001).max(1).step(.001).onChange((fun
 i.params.Points.threshold=e*UniverseUnit.LY
 })),g.add(WorldConfig,"system size(fixed)").min(1).max(50).step(.1).onChange((function(e){EVEWorld.setSystemSize(e)})),
 g.add(WorldConfig,"system size(LY)").min(.25).max(3).step(.01).onChange((function(e){EVEWorld.setSystemSize(e,!0)}))
-;const e=g.add(WorldConfig,"hunter radius(LY)").min(.01).max(3).step(.01).onChange((function(e){
+;const E=g.add(WorldConfig,"hunter radius(LY)").min(.01).max(3).step(.01).onChange((function(e){
 f("setRadius",[e*UniverseUnit.LY])}));g.add(WorldConfig,"hunter opacity").min(0).max(1).step(.01).onChange((function(e){
-f("setOpacity",[e])})),g.add(WorldConfig,"hunter sphere division").min(3).max(128).step(1).onChange((function(o){
-f("setRadius",[e.getValue()*UniverseUnit.LY,o])})),g.add(WorldConfig,"hunter use wireframe").onChange((function(e){
+f("setOpacity",[e])})),g.add(WorldConfig,"hunter sphere division").min(3).max(128).step(1).onChange((function(e){
+f("setRadius",[E.getValue()*UniverseUnit.LY,e])})),g.add(WorldConfig,"hunter use wireframe").onChange((function(e){
 f("useWireFrame",[e])})),g.add(WorldConfig,"closeUp to").min(.5).max(50).step(.01),
 g.add(WorldConfig,"fov").min(30).max(180).step(1).onChange((function(e){a.fov=e,a.updateProjectionMatrix()}))}
-const m=r.addFolder("World Config#2");{const e=WorldConfig.worldConfig;m.add(e,"visible").onChange((e=>{
-const o=$query(".eve-world");o&&(o.style.opacity=+e+"")})),m.add(e,"moveCamera"),m.add(e,"stepOfRotateY",-20,20,.001),
-m.add(e,"rotateRadiusAdjust",-300,300,.1),m.add(e,"dcad",1,20,.1)}m.open()
+const m=r.addFolder("World Config#2");{const W=WorldConfig.worldConfig;m.add(W,"visible").onChange((e=>{
+const o=$query(".eve-world");o&&(o.style.opacity=+e+"")})),m.add(W,"moveCamera"),m.add(W,"stepOfRotateY",-20,20,.001),
+m.add(W,"rotateRadiusAdjust",-300,300,.1),m.add(W,"dcad",1,20,.1)}m.open()
 ;const u=r.addFolder("Material config").close();u.add(WorldConfig,"Apply texture").onChange((e=>{
 const o=e?EVEWorld.getSystemTexture():null;forEachRegioinsMaterial((e=>{e.map=o,e.needsUpdate=!0}))})),
 u.add(WorldConfig,"transparent").onChange((e=>{forEachRegioinsMaterial((o=>{o.transparent=e,o.needsUpdate=!0}))})),
@@ -58,18 +58,18 @@ u.add(WorldConfig,"depthFunc",{NeverDepth:THREE.NeverDepth,AlwaysDepth:THREE.Alw
 LessEqualDepth:THREE.LessEqualDepth,EqualDepth:THREE.EqualDepth,GreaterEqualDepth:THREE.GreaterEqualDepth,
 GreaterDepth:THREE.GreaterDepth,NotEqualDepth:THREE.NotEqualDepth}).onChange((e=>{forEachRegioinsMaterial((o=>{
 o.depthFunc=+e,o.needsUpdate=!0}))}));const p=r.addFolder("Region Visibility").close();{
-const e=EVEWorld.getRegionObjects(),t=Object.keys(e).sort(),a=WorldConfig.regionVisibility
-;l=p.add(a,"Region name").onChange((function(e){forEachRegioins((n=>{o(n,e)}))})),
-p.add(a,"Text scale").min(0).max(10).step(.01).onChange((function(e){forEachRegioins((o=>{const t=n(o);t&&(t.scale2d=e)
-}))}));const i=/\w-\w\d{5}/,d=p.addFolder("wormhole region").close(),s=p.addFolder("universe region").close(),r=[]
-;d.add(a.wormhole,"ALL").onChange((e=>{for(const o of r)o.setValue(e)}));for(const n of t){
-const t=i.test(n),l=t?a.wormhole:a.universe;l[n]=!0;const c=(t?d:s).add(l,n).onChange((t=>{const a=e[n];a&&(a.visible=t,
-o(a,t))}));t&&r.push(c)}}const C=r.addFolder("Effect Sound").close();{const o=AppEffects.getDefaultTagList()
-;C.add(WorldConfig,"systemHunt",o).onChange((o=>{e.TagSystemHunt=o})).setValue(e.TagSystemHunt),
-C.add(WorldConfig,"systemCloseUp",o).onChange((o=>{e.TagSystemCloseUp=o})).setValue(e.TagSystemCloseUp),
+const y=EVEWorld.getRegionObjects(),R=Object.keys(y).sort(),b=WorldConfig.regionVisibility
+;l=p.add(b,"Region name").onChange((function(e){forEachRegioins((n=>{o(n,e)}))})),
+p.add(b,"Text scale").min(0).max(10).step(.01).onChange((function(e){forEachRegioins((o=>{const t=n(o);t&&(t.scale2d=e)
+}))}));const T=/\w-\w\d{5}/,U=p.addFolder("wormhole region").close(),v=p.addFolder("universe region").close(),x=[]
+;U.add(b.wormhole,"ALL").onChange((e=>{for(const o of x)o.setValue(e)}));for(const w of R){
+const V=T.test(w),H=V?b.wormhole:b.universe;H[w]=!0;const S=(V?U:v).add(H,w).onChange((e=>{const n=y[w];n&&(n.visible=e,
+o(n,e))}));V&&x.push(S)}}const C=r.addFolder("Effect Sound").close();{const D=AppEffects.getDefaultTagList()
+;C.add(WorldConfig,"systemHunt",D).onChange((o=>{e.TagSystemHunt=o})).setValue(e.TagSystemHunt),
+C.add(WorldConfig,"systemCloseUp",D).onChange((o=>{e.TagSystemCloseUp=o})).setValue(e.TagSystemCloseUp),
 C.add(WorldConfig,"closeUpEaseFanction",Util.getMazhFunctionNames()),
-C.add(WorldConfig,"effectVolume").min(0).max(1).step(.01).onChange((function(e){const n=o
-;for(const o of n)AppEffects.setVolume(o,e)})).setValue(WorldConfig.effectVolume)}
+C.add(WorldConfig,"effectVolume").min(0).max(1).step(.01).onChange((function(e){const o=D
+;for(const n of o)AppEffects.setVolume(n,e)})).setValue(WorldConfig.effectVolume)}
 const h=r.addFolder("Render config").close()
 ;h.add(WorldConfig,"reduceFps"),h.add(WorldConfig,"PixelRatio").min(.1).max(3).step(.1).onChange((function(e){
 s.setPixelRatio(e)}))},e.TagSystemHunt="tick",e.TagSystemCloseUp="fadein",e.addAnnotationToGui=function(){
