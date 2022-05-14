@@ -6,16 +6,12 @@
   https://opensource.org/licenses/mit-license.php
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-(async () => {
-    const SCRIPT_BASENAME = "system-coordinate-map-mini";
-    NsLoader.setConfig("./libs", "./web/js-extenstions.js", "script[src*=css-2d-renderer]");
-    await NsLoader.loadCompressedScript(SCRIPT_BASENAME);
-    NsLoader.cleanUp();
+let cslCallback = () => {
+    cslCallback = void 0;
     runEVEWorld(() => {
         window.setTimeout(() => {
-            document.querySelectorAll(`script[src^='./loader/'],script[src*='compressed-script-loader'],script[id^='${SCRIPT_BASENAME}']`).forEach(script => script.remove());
-            const ret = delete window.NsLoader;
-            console.log("delete window.NsLoader:", ret);
-        }, 1000);
+            document.querySelectorAll(`script[src^='./loader/'],script[src*='compressed-script-loader']`).forEach(script => script.remove());
+            window.NsLoader = void 0;
+        }, 777);
     });
-})();
+};
