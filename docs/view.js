@@ -50,7 +50,7 @@ const e=UniverseUnit.ly(100);a.position.set(e,4*e,e),a.lookAt(0,0,0)}let s;{cons
 ;s=new THREE.PolarGridHelper(e,t,n,128,new THREE.Color(3421236),new THREE.Color(5658198)),s.visible=WorldConfig.showGrid
 }const i=new THREE.AxesHelper(UniverseUnit.ly(50));return i.visible=WorldConfig.showAxes,
 e.add((new THREE.Object3D).add(i,s,n,a)),o=!0,{axes:i,gridHelper:s,cameraHelper:n,objectiveCamera:a,
-orbitHelper:new THREE.OrbitControls(a)}}}function s(e=window.innerWidth,t=window.innerHeight){
+orbitHelper:new THREE.OrbitControls(a)}}return{}}function s(e=window.innerWidth,t=window.innerHeight){
 $dom("stats-container").innerHTML="\n<div class=\"extra-stat\">\n    <span>USING EASE: </span>\n    <span class=\"ease-function\"></span> | LOOKAT DISTANCE: <span\n    class=\"lookat-distance\" data-unit=\"LY,\"></span>\n    <span class=\"lookat-distance\" data-unit=\"AU,\"></span>\n    <span class=\"lookat-distance\" data-unit=\"km;\"></span>\n</div>\n<div class=\"extra-stat\">\n    <span>Distance to selected System: </span>\n    <span class=\"hunted-distance\" data-unit=\"LY\"></span>\n</div>"
 ;const n=new Stats;n.showPanel(0),n.dom.className="webgl-stats",$dom("stats-container").append(n.dom)
 ;const o=new THREE.Scene,s=new THREE.PerspectiveCamera(WorldConfig.fov,e/t,1e3,UniverseUnit.ly(974.91));o.add(s)

@@ -1,4 +1,3 @@
-"use strict";
 /*!
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   Copyright (C) 2022 jeffy-g <hirotom1107@gmail.com>
@@ -6,11 +5,13 @@
   https://opensource.org/licenses/mit-license.php
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-let cslCallback = () => {
+/** @type {import("compressed-script-loader").TCSLCallbak} */
+var cslCallback = () => {
     cslCallback = void 0;
     runEVEWorld(() => {
         window.setTimeout(() => {
             document.querySelectorAll(`script[src^='./loader/'],script[src*='compressed-script-loader']`).forEach(script => script.remove());
+            // @ts-ignore 
             window.NsLoader = void 0;
         }, 777);
     });

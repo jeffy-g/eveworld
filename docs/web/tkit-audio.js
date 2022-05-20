@@ -7,16 +7,16 @@ src:"resources/fx/update.wav",size:1}];let s;e.loadDefault=function(){s=n(t),con
 e.getDefaultTagList=function(){return s};const o={};let i=!1;HTMLAudioElement.prototype.stop=function(){this.pause(),
 this.currentTime=0};class r{constructor(e,t){this.src=e,this.init(t)}init(e){let t=[]
 ;for(this.size=e;e--;)t[e]=new Audio(this.src);this.audio=t,this.index=0}play(){if(i)return
-;this.audio[this.index++%this.size].play()}pause(){for(let e of this.audio)e.pause()}stop(){
-for(let e of this.audio)e.stop()}destroy(){let e=this.size;for(;e--;)this.audio[e]=null;this.audio.length=this.size=0}
-setVolume(e){for(let t of this.audio)t.volume=e}}function u(e,t,s){return!o[e]&&(o[e]=new r(t,s),!0)}function n(e,t,s){
-if("string"==typeof e)return u(e,t,s);if(Array.isArray(e)){const t=e;let s=[]
+;this.audio[this.index++%this.size].play()}pause(){for(let e of this.audio)e&&e.pause()}stop(){
+for(let e of this.audio)e&&e.stop()}destroy(){let e=this.size;for(;e--;)this.audio[e]=null;this.audio.length=this.size=0
+}setVolume(e){for(let t of this.audio)t&&(t.volume=e)}}function u(e,t,s){return!o[e]&&(o[e]=new r(t,s),!0)}
+function n(e,t,s){if("string"==typeof e)return u(e,t,s);if(Array.isArray(e)){const t=e;let s=[]
 ;for(let e of t)u(e.tag,e.src,e.size)&&s.push(e.tag);return s}return!1}e.createSequencialAudio=n,
 e.sequencialPlay=function(e){let t=o[e];t&&t.play()},e.emit=function(e){let t=o[e];t&&t.play()},e.setMute=function(e){
-i=e},e.sequencialStop=function(e){let t=o[e];t&&t.stop()},e.sequencialStopAll=function(){let e=Object.keys(o)
-;if(e)for(let t of e)this.sequencialStop(t)},e.destroy=function(e){let t=o[e];if(t){t.destroy();let s=delete o[e]
-;return s}return!1},e.purgeAll=function(){let e=Object.keys(o);if(e){let t=[];for(let s of e)this.destroy(s)&&t.push(s)
-;console.log("purge success : [%s]",t.join(", "))}},e.setVolume=function(e,t){t<0?t=0:t>1&&(t=1);let s=o[e]
-;s&&s.setVolume(t)},e.setVolumeAll=function(e){let t=Object.keys(o);if(t)for(let s of t)this.setVolume(s,e)},
+i=e},e.sequencialStop=function(e){let t=o[e];t&&t.stop()},e.sequencialStopAll=function(){let t=Object.keys(o)
+;if(t)for(let s of t)e.sequencialStop(s)},e.destroy=function(e){let t=o[e];if(t){t.destroy();let s=delete o[e];return s}
+return!1},e.purgeAll=function(){let t=Object.keys(o);if(t){let s=[];for(let o of t)e.destroy(o)&&s.push(o)
+;console.log("purge success : [%s]",s.join(", "))}},e.setVolume=function(e,t){t<0?t=0:t>1&&(t=1);let s=o[e]
+;s&&s.setVolume(t)},e.setVolumeAll=function(t){let s=Object.keys(o);if(s)for(let o of s)e.setVolume(o,t)},
 e.pause=function(e){let t=o[e];t&&t.pause()}}(_AppEffects||(_AppEffects={})),window.AppEffects=_AppEffects
 ;export default void 0;
