@@ -1,6 +1,6 @@
 {
   "name": "eve-world-map",
-  "version": "1.4.5-beta",
+  "version": "1.4.6-beta",
   "description": "EVE online world map viewer with threejs",
   "license": "AGPL-3.0-only",
   "author": {
@@ -9,12 +9,11 @@
     "url": "https://github.com/jeffy-g"
   },
   "keywords": [
-	"eve-online",
-	"javascript",
-	"threejs",
-	"eve"
-  ],
-  "devDependencies": {
-  },
-  "dependencies": {}
+    "eve-online",
+    "world map",
+    "javascript",
+    "threejs",
+    "SRI",
+    "eve"
+  ]
 }
