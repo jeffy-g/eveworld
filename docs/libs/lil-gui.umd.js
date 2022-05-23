@@ -7,8 +7,8 @@
  */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(global = global || self, factory(global.lil = {}));
+	// @ts-ignore 
+	typeof define === 'function' && define.amd ? define(['exports'], factory) : (global = global || self, factory(global.lil = {}));
 }(this, (function (exports) { 'use strict';
 
 	const listenerParam = { passive: true };
@@ -16,7 +16,7 @@
 	 * Base class for all controllers.
 	 */
 	class Controller {
-
+		static nextNameID = 0;
 		constructor( parent, object, property, className, widgetTag = 'div' ) {
 
 			/**
@@ -65,7 +65,7 @@
 			this.$name = document.createElement( 'div' );
 			this.$name.classList.add( 'name' );
 
-			Controller.nextNameID = Controller.nextNameID || 0;
+			// Controller.nextNameID = Controller.nextNameID || 0;
 			this.$name.id = `lil-gui-name-${++Controller.nextNameID}`;
 
 			/**
@@ -420,9 +420,9 @@
 
 		} else if ( match = string.match( /rgb\(\s*(\d*)\s*,\s*(\d*)\s*,\s*(\d*)\s*\)/ ) ) {
 
-			result = parseInt( match[ 1 ] ).toString( 16 ).padStart( 2, 0 )
-				+ parseInt( match[ 2 ] ).toString( 16 ).padStart( 2, 0 )
-				+ parseInt( match[ 3 ] ).toString( 16 ).padStart( 2, 0 );
+			result = parseInt( match[ 1 ] ).toString( 16 ).padStart( 2, "0" )
+				+ parseInt( match[ 2 ] ).toString( 16 ).padStart( 2, "0" )
+				+ parseInt( match[ 3 ] ).toString( 16 ).padStart( 2, "0" );
 
 		} else if ( match = string.match( /^#?([a-f0-9])([a-f0-9])([a-f0-9])$/i ) ) {
 
@@ -449,7 +449,7 @@
 		isPrimitive: true,
 		match: v => typeof v === 'number',
 		fromHexString: string => parseInt( string.substring( 1 ), 16 ),
-		toHexString: value => '#' + value.toString( 16 ).padStart( 6, 0 )
+		toHexString: value => '#' + value.toString( 16 ).padStart( 6, "0" )
 	};
 
 	const ARRAY = {
@@ -516,7 +516,7 @@
 
 			this.$input = document.createElement( 'input' );
 			this.$input.setAttribute( 'type', 'color' );
-			this.$input.setAttribute( 'tabindex', -1 );
+			this.$input.setAttribute( 'tabindex', "-1" );
 			this.$input.setAttribute( 'aria-labelledby', this.$name.id );
 
 			this.$text = document.createElement( 'input' );
@@ -847,7 +847,7 @@
 
 			this.$input.addEventListener( 'input', onInput, listenerParam);
 			this.$input.addEventListener( 'keydown', onKeyDown);
-			this.$input.addEventListener( 'wheel', onWheel);
+			this.$input.addEventListener( 'wheel', onWheel, { passive: true });
 			this.$input.addEventListener( 'mousedown', onMouseDown, listenerParam);
 			this.$input.addEventListener( 'focus', onFocus, listenerParam);
 			this.$input.addEventListener( 'blur', onBlur, listenerParam);
@@ -1688,7 +1688,7 @@
 		 * Injects the default stylesheet into the page if this is the first GUI.
 		 * Pass `false` to use your own stylesheet.
 		 *
-		 * @param {number} [options.touchStyles=true]
+		 * @param {boolean} [options.touchStyles=true]
 		 * Makes controllers larger on touch devices. Pass `false` to disable touch styles.
 		 *
 		 * @param {GUI} [options.parent]
@@ -1761,8 +1761,8 @@
 			this.$title = document.createElement( 'div' );
 			this.$title.classList.add( 'title' );
 			this.$title.setAttribute( 'role', 'button' );
-			this.$title.setAttribute( 'aria-expanded', true );
-			this.$title.setAttribute( 'tabindex', 0 );
+			this.$title.setAttribute( 'aria-expanded', "true" );
+			this.$title.setAttribute( 'tabindex', "0" );
 
 			this.$title.addEventListener( 'click', () => this.openAnimated( this._closed ), listenerParam);
 			this.$title.addEventListener( 'keydown', e => {
@@ -2031,7 +2031,7 @@
 
 			this._closed = !open;
 
-			this.$title.setAttribute( 'aria-expanded', !this._closed );
+			this.$title.setAttribute( 'aria-expanded', (!this._closed) + "" );
 			this.domElement.classList.toggle( 'closed', this._closed );
 
 			return this;
@@ -2078,7 +2078,7 @@
 			// set state immediately
 			this._closed = !open;
 
-			this.$title.setAttribute( 'aria-expanded', !this._closed );
+			this.$title.setAttribute( 'aria-expanded', (!this._closed) + "" );
 
 			// wait for next frame to measure $children
 			requestAnimationFrame( () => {
@@ -2141,7 +2141,7 @@
 
 		/**
 		 * Pass a function to be called whenever a controller in this GUI changes.
-		 * @param {function({object:object, property:string, value:any, controller:Controller})} callback
+		 * @param {function({object:object, property:string, value:any, controller:Controller}): any} callback
 		 * @returns {this}
 		 * @example
 		 * gui.onChange( event => {
@@ -2179,7 +2179,7 @@
 
 		/**
 		 * Pass a function to be called whenever a controller in this GUI has finished changing.
-		 * @param {function({object:object, property:string, value:any, controller:Controller})} callback
+		 * @param {function({object:object, property:string, value:any, controller:Controller}): any} callback
 		 * @returns {this}
 		 * @example
 		 * gui.onFinishChange( event => {

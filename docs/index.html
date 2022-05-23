@@ -5,7 +5,7 @@
     <meta charset="utf-8"/>
     <meta name="description" content="EVE World Map powered by threejs"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=4, shrink-to-fit=no"/>
-    <title>EVE world map (v1.4.5-beta powered by three.js)</title>
+    <title>EVE world map (v1.4.6-beta powered by three.js)</title>
 
     <script defer src="https://cdn.jsdelivr.net/npm/three@latest/build/three.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/stats.js@latest/build/stats.min.js"></script>
@@ -19,7 +19,8 @@
         data-csl-config='{
           "base": "./libs",
           "selector": "script[src*=css-2d-renderer]",
-          "load": ["system-coordinate-map-mini"]
+          "load": ["system-coordinate-map-mini"],
+          "callback": "sysMapLoadDone"
         }'
         src="https://cdn.jsdelivr.net/npm/compressed-script-loader/umd/index.js"
     ></script>

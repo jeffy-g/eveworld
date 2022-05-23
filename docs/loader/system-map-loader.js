@@ -6,8 +6,8 @@
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 /** @type {import("compressed-script-loader").TCSLCallbak} */
-var cslCallback = () => {
-    cslCallback = void 0;
+var sysMapLoadDone = () => {
+    sysMapLoadDone = void 0;
     runEVEWorld(() => {
         window.setTimeout(() => {
             document.querySelectorAll(`script[src^='./loader/'],script[src*='compressed-script-loader']`).forEach(script => script.remove());
