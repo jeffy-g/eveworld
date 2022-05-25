@@ -6,13 +6,18 @@
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
 /** @type {import("compressed-script-loader").TCSLCallbak} */
-var sysMapLoadDone = () => {
+var sysMapLoadDone = (err) => {
     sysMapLoadDone = void 0;
-    runEVEWorld(() => {
-        window.setTimeout(() => {
-            document.querySelectorAll(`script[src^='./loader/'],script[src*='compressed-script-loader']`).forEach(script => script.remove());
-            // @ts-ignore 
-            window.NsLoader = void 0;
-        }, 777);
-    });
+    if (err) {
+        console.error(err.map(e => e.message).join("\n\n"));
+    }
+    else {
+        runEVEWorld(() => {
+            window.setTimeout(() => {
+                document.querySelectorAll(`script[src^='./loader/'],script[src*='compressed-script-loader']`).forEach(script => script.remove());
+                // @ts-ignore 
+                window.NsLoader = void 0;
+            }, 777);
+        });
+    }
 };

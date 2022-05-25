@@ -5,8 +5,8 @@
   https://opensource.org/licenses/mit-license.php
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
-import UniverseUnit from"./universe-unit.js";import{WorldConfig}from"./config.js";const TEXT_ID="sphere-title-text"
-;export class TitiledSphereMesh extends THREE.Mesh{constructor(e,t,n=""){
+import UniverseUnit from"eveworld/universe-unit.js";import{WorldConfig}from"eveworld/config.js"
+;const TEXT_ID="sphere-title-text";export class TitiledSphereMesh extends THREE.Mesh{constructor(e,t,n=""){
 super(new THREE.SphereBufferGeometry(e,t,t),new THREE.MeshBasicMaterial({opacity:.4,transparent:!0})),
 this.sphereDivision=t,this.type="TitiledSphereMesh";const o=View.createCSS2DText("",0,e,0,{className:n,scale:.85})
 ;o.name=TEXT_ID,super.add(o)}setText(e){const t=super.getObjectByName(TEXT_ID);return t.element.textContent=e,t.element}
