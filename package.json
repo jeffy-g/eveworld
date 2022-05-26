@@ -1,6 +1,6 @@
 {
   "name": "eve-world-map",
-  "version": "1.4.7-beta",
+  "version": "1.4.8-beta",
   "description": "EVE online world map viewer with threejs",
   "license": "AGPL-3.0-only",
   "author": {
