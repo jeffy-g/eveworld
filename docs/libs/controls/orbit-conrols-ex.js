@@ -1,3 +1,4 @@
+/// <reference types="three"/>
 /**
  * @author qiao / https://github.com/qiao
  * @author mrdoob / http://mrdoob.com
@@ -11,7 +12,11 @@
 //    Orbit - left mouse / touch: one-finger move
 //    Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish
 //    Pan - right mouse, or left mouse + ctrl/meta/shiftKey, or arrow keys / touch: two-finger move
-THREE.OrbitControls = function(object, domElement) {
+/**
+ * @param {THREE.PerspectiveCamera & { isOrthographicCamera?: true }} object 
+ * @param {HTMLElement} domElement
+ */
+THREE.OrbitControls = function OrbitControls(object, domElement) {
     this.object = object;
     this.domElement = domElement || document;
     // Set to false to disable this control
@@ -203,7 +208,9 @@ THREE.OrbitControls = function(object, domElement) {
     // 2019-4-7 11:24:58
     const isTouchAvailable  = "ontouchstart" in document;
     /** THREE.OrbitControls */
-    const scope = this;
+
+    const scope = /** @type {Partial<THREE.EventDispatcher> & this} */(this);
+    const getDom = () => scope.domElement === document ? scope.domElement.body : /** @type {HTMLElement} */(scope.domElement);
     const changeEvent = {
         type: 'change'
     };
@@ -280,7 +287,7 @@ THREE.OrbitControls = function(object, domElement) {
     const pan = function() {
         const offset = new THREE.Vector3();
         return (deltaX, deltaY) => {
-            const element = scope.domElement === document ? scope.domElement.body : scope.domElement;
+            const element = getDom();
             if (scope.object.isPerspectiveCamera) {
                 // perspective
                 const position = scope.object.position;
@@ -291,9 +298,11 @@ THREE.OrbitControls = function(object, domElement) {
                 // we use only clientHeight here so aspect ratio does not distort speed
                 panLeft(2 * deltaX * targetDistance / element.clientHeight, scope.object.matrix);
                 panUp(2 * deltaY * targetDistance / element.clientHeight, scope.object.matrix);
+            // @ts-ignore orthographic
             } else if (scope.object.isOrthographicCamera) {
-                // orthographic
+                // @ts-ignore orthographic
                 panLeft(deltaX * (scope.object.right - scope.object.left) / scope.object.zoom / element.clientWidth, scope.object.matrix);
+                // @ts-ignore orthographic
                 panUp(deltaY * (scope.object.top - scope.object.bottom) / scope.object.zoom / element.clientHeight, scope.object.matrix);
             } else {
                 // camera neither orthographic nor perspective
@@ -350,7 +359,7 @@ THREE.OrbitControls = function(object, domElement) {
         //console.log( 'handleMouseMoveRotate' );
         rotateEnd.set(event.clientX, event.clientY);
         rotateDelta.subVectors(rotateEnd, rotateStart).multiplyScalar(scope.rotateSpeed);
-        var element = scope.domElement === document ? scope.domElement.body : scope.domElement;
+        const element = getDom();
         rotateLeft(2 * Math.PI * rotateDelta.x / element.clientHeight); // yes, height
         rotateUp(2 * Math.PI * rotateDelta.y / element.clientHeight);
         rotateStart.copy(rotateEnd);
@@ -441,7 +450,7 @@ THREE.OrbitControls = function(object, domElement) {
         //console.log( 'handleTouchMoveRotate' );
         rotateEnd.set(event.touches[0].pageX, event.touches[0].pageY);
         rotateDelta.subVectors(rotateEnd, rotateStart).multiplyScalar(scope.rotateSpeed);
-        const element = scope.domElement === document ? scope.domElement.body : scope.domElement;
+        const element = getDom();
         rotateLeft(2 * Math.PI * rotateDelta.x / element.clientHeight); // yes, height
         rotateUp(2 * Math.PI * rotateDelta.y / element.clientHeight);
         rotateStart.copy(rotateEnd);

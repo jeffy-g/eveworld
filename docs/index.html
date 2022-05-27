@@ -5,32 +5,21 @@
     <meta charset="utf-8"/>
     <meta name="description" content="EVE World Map powered by threejs"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=4, shrink-to-fit=no"/>
-    <title>EVE world map (v1.4.8-beta powered by three.js)</title>
+    <title>EVE world map (v1.5.0-beta powered by three.js)</title>
 
     <script defer src="https://cdn.jsdelivr.net/npm/three@latest/build/three.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/stats.js@latest/build/stats.min.js"></script>
     <script defer src="./libs/lil-gui.umd.js"></script>
     <script defer src="./libs/controls/orbit-conrols-ex.js"></script>
     <script defer src="./libs/renderers/css-2d-renderer.js"></script>
-
-    <script type="importmap">
-        {
-            "imports": {
-                "eveworld/": "./",
-                "web/": "./web/"
-            }
-        }
-    </script>
-    <script type="module" src="./eve-map.js"></script>
     <script defer src="./loader/system-map-loader.js"></script>
     <script defer
         data-csl-config='{
-          "base": "./libs",
           "selector": "script[src*=css-2d-renderer]",
-          "load": ["system-coordinate-map-mini"],
+          "load": ["bundle"],
           "callback": "sysMapLoadDone"
         }'
-        src="https://cdn.jsdelivr.net/npm/compressed-script-loader@latest/umd/index.js"
+        src="./libs/csl-dev.js"
     ></script>
 
     <link rel="icon" type="image/png" href="./resources/eve-icon.png">
