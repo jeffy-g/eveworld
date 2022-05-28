@@ -5,13 +5,14 @@
   https://opensource.org/licenses/mit-license.php
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 */
+/// <reference types="compressed-script-loader"/>
 if (!/Chrome/.test(navigator.userAgent)) {
     const d = document;
     const s = d.head.insertBefore(d.createElement("script"), d.head.firstElementChild);
     s.async = true;
-    s.src = "https://ga.jspm.io/npm:es-module-shims@1.5.5/dist/es-module-shims.js";
+    s.src = "https://cdn.jsdelivr.net/npm/es-module-shims@1.5.5/dist/es-module-shims.min.js";
 }
-/** @type {import("compressed-script-loader").TCSLCallbak} */
+/** @type {TCSLCallbak} */
 var sysMapLoadDone = (err) => {
     sysMapLoadDone = void 0;
     if (err) {
