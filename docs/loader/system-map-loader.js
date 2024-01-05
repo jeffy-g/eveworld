@@ -23,7 +23,6 @@ var sysMapLoadDone = (err) => {
             window.setTimeout(() => {
                 document.querySelectorAll(`script[src^='./loader/'],script[src*='compressed-script-loader']`).forEach(script => script.remove());
                 // @ts-ignore 
-                window.NsLoader = void 0;
             }, 777);
         });
     }
